@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Grayson Gilbert</title>
+    <link>http://192.168.1.169:1314/tags/</link>
+    <description>Recent content in Tags on Grayson Gilbert</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://192.168.1.169:1314/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>http://192.168.1.169:1314/tags/c&#43;&#43;/</link>
+      <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Embedded</title>
+      <link>http://192.168.1.169:1314/tags/embedded/</link>
+      <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/embedded/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Machine Learning</title>
+      <link>http://192.168.1.169:1314/tags/machine-learning/</link>
+      <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>http://192.168.1.169:1314/tags/python/</link>
+      <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Robotics</title>
+      <link>http://192.168.1.169:1314/tags/robotics/</link>
+      <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/robotics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Embedded Hardware</title>
+      <link>http://192.168.1.169:1314/tags/embedded-hardware/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/embedded-hardware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>KiCad</title>
+      <link>http://192.168.1.169:1314/tags/kicad/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/kicad/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PCB Design</title>
+      <link>http://192.168.1.169:1314/tags/pcb-design/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/pcb-design/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>STM32</title>
+      <link>http://192.168.1.169:1314/tags/stm32/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/stm32/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Autonomy</title>
+      <link>http://192.168.1.169:1314/tags/autonomy/</link>
+      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/autonomy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ROS 2</title>
+      <link>http://192.168.1.169:1314/tags/ros-2/</link>
+      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/ros-2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sonar</title>
+      <link>http://192.168.1.169:1314/tags/sonar/</link>
+      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/sonar/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Computer Vision</title>
+      <link>http://192.168.1.169:1314/tags/computer-vision/</link>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/computer-vision/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OpenCV</title>
+      <link>http://192.168.1.169:1314/tags/opencv/</link>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/opencv/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Manipulation</title>
+      <link>http://192.168.1.169:1314/tags/manipulation/</link>
+      <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/manipulation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Control Systems</title>
+      <link>http://192.168.1.169:1314/tags/control-systems/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/control-systems/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>State Estimation</title>
+      <link>http://192.168.1.169:1314/tags/state-estimation/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/state-estimation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Path Planning</title>
+      <link>http://192.168.1.169:1314/tags/path-planning/</link>
+      <pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/path-planning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI</title>
+      <link>http://192.168.1.169:1314/tags/ai/</link>
+      <pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Search Algorithms</title>
+      <link>http://192.168.1.169:1314/tags/search-algorithms/</link>
+      <pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/tags/search-algorithms/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,56 @@
+baseURL: "https://example.org/"
+locale: "en-us"
+title: "Grayson Gilbert"
+theme: ["PaperMod"]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+params:
+  assets:
+    favicon: "/favicon.png"
+
+  # Disable PaperMod's built-in homeInfoParams hero — we use our own custom hero partial
+  # homeInfoParams: (disabled — see layouts/partials/home_hero.html)
+
+  cover:
+    linkFullImages: true     # Makes cover images clickable on project pages
+    responsiveImages: false  # Set true if using Hugo Extended for image processing
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/GraysonGilbert"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/grayson-gilbert/"
+    - name: email
+      url: "mailto:graysongilbert@gmail.com"
+
+  mainSections: ["projects"]
+
+  # Show reading time and word count on project pages
+  ShowReadingTime: false
+  ShowWordCount: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+
+menu:
+  main:
+    - identifier: projects
+      name: Projects
+      url: /projects/
+      weight: 10
+    - identifier: skills
+      name: Skills
+      url: /skills/
+      weight: 20
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 30
+    - identifier: resume
+      name: Resume
+      url: /resume.pdf
+      weight: 40

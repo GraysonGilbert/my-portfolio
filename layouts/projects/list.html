@@ -1,0 +1,128 @@
+{{- define "main" }}
+
+<header class="page-header">
+    <h1>Projects</h1>
+    <p class="post-description">
+        A collection of engineering and robotics projects spanning embedded hardware,
+        autonomy, machine learning, and more. Click any card to read the full write-up.
+    </p>
+</header>
+
+{{- /* ── Collect & sort all project pages ─────────────────── */}}
+{{- $allProjects := where site.RegularPages "Type" "projects" }}
+{{- $allProjects = $allProjects.ByParam "weight" }}
+
+{{- /* ── Gather unique tags for the filter bar ─────────────── */}}
+{{- $allTags := slice }}
+{{- range $allProjects }}
+    {{- range .Params.tags }}
+        {{- $allTags = $allTags | append . }}
+    {{- end }}
+{{- end }}
+{{- $uniqueTags := $allTags | uniq | sort }}
+
+{{- /* ── Tag filter bar ───────────────────────────────────── */}}
+<div class="filter-container">
+    <div class="filter-header">
+        <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+        </svg>
+        <span class="filter-title">Filter by Tag</span>
+        <span class="filter-results" id="filter-results">{{ len $allProjects }} projects</span>
+    </div>
+    <div class="tag-filter-bar" id="tag-filter-bar">
+        <button class="filter-pill filter-pill-active" data-tag="all">All</button>
+        {{- range $uniqueTags }}
+        <button class="filter-pill" data-tag="{{ . }}">{{ . }}</button>
+        {{- end }}
+    </div>
+</div>
+
+{{- /* ── Project cards grid ──────────────────────────────── */}}
+<div class="projects-page-grid" id="projects-grid">
+    {{- range $allProjects }}
+    {{- $tagsJson := .Params.tags | jsonify }}
+    <a class="project-card"
+       href="{{ .Permalink }}"
+       data-tags='{{ $tagsJson }}'>
+        {{- if .Params.cover.image }}
+        <img
+            class="project-card-thumb"
+            src="{{ .Params.cover.image | absURL }}"
+            alt="{{ .Params.cover.alt | default .Title }}"
+            loading="lazy"
+        >
+        {{- else }}
+        <div class="project-card-thumb-placeholder" aria-hidden="true">🔧</div>
+        {{- end }}
+        <div class="project-card-body">
+            <h3 class="project-card-title">{{ .Title }}</h3>
+            {{- with .Params.summary }}
+            <p class="project-card-summary">{{ . }}</p>
+            {{- else }}
+            <p class="project-card-summary">{{ .Summary | plainify | truncate 120 }}</p>
+            {{- end }}
+            {{- if .Params.tags }}
+            <div class="project-card-tags">
+                {{- range .Params.tags }}
+                <span class="project-tag">{{ . }}</span>
+                {{- end }}
+            </div>
+            {{- end }}
+        </div>
+    </a>
+    {{- end }}
+</div>
+
+{{- /* ── Empty state ─────────────────────────────────────── */}}
+<p class="projects-empty-msg" id="projects-empty-msg" style="display:none;">
+    No projects match that filter. <button class="filter-clear-link" id="filter-clear">Clear filter</button>
+</p>
+
+{{- /* ── Client-side tag filter script ─────────────────── */}}
+<script>
+(function () {
+    const bar     = document.getElementById('tag-filter-bar');
+    const grid    = document.getElementById('projects-grid');
+    const empty   = document.getElementById('projects-empty-msg');
+    const counter = document.getElementById('filter-results');
+    const clearBtn = document.getElementById('filter-clear');
+    const total   = grid.querySelectorAll('.project-card').length;
+
+    function applyFilter(tag) {
+        bar.querySelectorAll('.filter-pill').forEach(b => {
+            b.classList.toggle('filter-pill-active', b.dataset.tag === tag);
+        });
+
+        let visible = 0;
+        grid.querySelectorAll('.project-card').forEach(card => {
+            const tags = JSON.parse(card.dataset.tags || '[]');
+            const show = tag === 'all' || tags.includes(tag);
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+
+        counter.textContent = tag === 'all'
+            ? total + ' projects'
+            : visible + ' of ' + total + ' projects';
+
+        empty.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    bar.addEventListener('click', function (e) {
+        const btn = e.target.closest('.filter-pill');
+        if (!btn) return;
+        applyFilter(btn.dataset.tag);
+    });
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', function () {
+            applyFilter('all');
+        });
+    }
+})();
+</script>
+
+{{- end }}{{- /* end main */ -}}

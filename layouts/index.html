@@ -1,0 +1,196 @@
+{{- define "main" }}
+
+{{- /* ── Hero Section ─────────────────────────────────────── */}}
+{{- if .IsHome }}
+    {{- partial "home_hero.html" . }}
+{{- end }}
+
+{{- /* ── Page title for non-home list/section pages ────────── */}}
+{{- if not .IsHome | and .Title }}
+<header class="page-header">
+    {{- partial "breadcrumbs.html" . }}
+    <h1>
+        {{ .Title }}
+        {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
+        {{- with .OutputFormats.Get "rss" }}
+        <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" height="23">
+                <path d="M4 11a9 9 0 0 1 9 9" />
+                <path d="M4 4a16 16 0 0 1 16 16" />
+                <circle cx="5" cy="19" r="1" />
+            </svg>
+        </a>
+        {{- end }}
+        {{- end }}
+    </h1>
+    {{- if .Description }}
+    <div class="post-description">
+        {{ .Description | markdownify }}
+    </div>
+    {{- end }}
+</header>
+{{- end }}
+
+{{- /* ── Collect all project pages ───────────────────────── */}}
+{{- $allProjects := where site.RegularPages "Type" "projects" }}
+{{- $allProjects = where $allProjects "Params.hiddenInHomeList" "!=" "true" }}
+
+{{- /* Featured project slugs — in priority order */}}
+{{- $featuredSlugs := slice "sim2real-pendulum" "stm32-mcu-pcb" "project-mars" "monocular-perception-and-tracking" }}
+
+{{- if .IsHome }}
+
+    {{- /* ── Competencies Section ─────────────────────────── */}}
+    {{- if .Content }}
+    <div class="post-content md-content competencies-section">
+        {{- if not (.Param "disableAnchoredHeadings") }}
+        {{- partial "anchored_headings.html" .Content -}}
+        {{- else }}{{ .Content }}{{ end }}
+    </div>
+    {{- end }}
+
+    {{- /* ── Featured Projects ─────────────────────────────── */}}
+    <p class="section-title">Featured Projects</p>
+    <div class="featured-projects-grid">
+        {{- range $allProjects }}
+            {{- $slug := .File.ContentBaseName }}
+            {{- if in $featuredSlugs $slug }}
+            <a class="project-card" href="{{ .Permalink }}">
+                {{- if .Params.cover.image }}
+                <img
+                    class="project-card-thumb"
+                    src="{{ .Params.cover.image | absURL }}"
+                    alt="{{ .Params.cover.alt | default .Title }}"
+                    loading="lazy"
+                >
+                {{- else }}
+                <div class="project-card-thumb-placeholder" aria-hidden="true">🔧</div>
+                {{- end }}
+                <div class="project-card-body">
+                    <h3 class="project-card-title">{{ .Title }}</h3>
+                    {{- with .Params.summary }}
+                    <p class="project-card-summary">{{ . }}</p>
+                    {{- else }}
+                    <p class="project-card-summary">{{ .Summary | plainify | truncate 110 }}</p>
+                    {{- end }}
+                    {{- if .Params.tags }}
+                    <div class="project-card-tags">
+                        {{- range first 3 .Params.tags }}
+                        <span class="project-tag">{{ . }}</span>
+                        {{- end }}
+                    </div>
+                    {{- end }}
+                </div>
+            </a>
+            {{- end }}
+        {{- end }}
+    </div>
+
+    {{- /* ── All Other Projects ───────────────────────────── */}}
+    {{- $otherProjects := slice }}
+    {{- range $allProjects }}
+        {{- $slug := .File.ContentBaseName }}
+        {{- if not (in $featuredSlugs $slug) }}
+            {{- $otherProjects = $otherProjects | append . }}
+        {{- end }}
+    {{- end }}
+
+    {{- if $otherProjects }}
+    <p class="section-title">More Projects</p>
+    <div class="all-projects-grid">
+        {{- range $otherProjects }}
+        <a class="project-card" href="{{ .Permalink }}">
+            {{- if .Params.cover.image }}
+            <img
+                class="project-card-thumb"
+                src="{{ .Params.cover.image | absURL }}"
+                alt="{{ .Params.cover.alt | default .Title }}"
+                loading="lazy"
+            >
+            {{- else }}
+            <div class="project-card-thumb-placeholder" aria-hidden="true">🔧</div>
+            {{- end }}
+            <div class="project-card-body">
+                <h3 class="project-card-title">{{ .Title }}</h3>
+                {{- with .Params.summary }}
+                <p class="project-card-summary">{{ . }}</p>
+                {{- else }}
+                <p class="project-card-summary">{{ .Summary | plainify | truncate 90 }}</p>
+                {{- end }}
+                {{- if .Params.tags }}
+                <div class="project-card-tags">
+                    {{- range first 3 .Params.tags }}
+                    <span class="project-tag">{{ . }}</span>
+                    {{- end }}
+                </div>
+                {{- end }}
+            </div>
+        </a>
+        {{- end }}
+    </div>
+    {{- end }}
+
+{{- else }}
+    {{- /* ── Non-home list pages (tags, archives, etc.) ─── */}}
+    {{- $pages := union .RegularPages .Sections }}
+    {{- $paginator := .Paginate $pages }}
+
+    {{- range $index, $page := $paginator.Pages }}
+    {{- $class := "post-entry" }}
+    {{- if $class }}
+    <article class="{{ $class }}">
+        {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+        {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+        <header class="entry-header">
+            <h2 class="entry-hint-parent">
+                {{- .Title }}
+                {{- if .Draft }}
+                <span class="entry-hint" title="Draft">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+                        <path d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+                    </svg>
+                </span>
+                {{- end }}
+            </h2>
+        </header>
+        {{- if (ne (.Param "hideSummary") true) }}
+        <div class="entry-content">
+            <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+        </div>
+        {{- end }}
+        {{- if not (.Param "hideMeta") }}
+        <footer class="entry-footer">
+            {{- partial "post_meta.html" . -}}
+        </footer>
+        {{- end }}
+        <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+    </article>
+    {{- end }}
+    {{- end }}
+
+    {{- if gt $paginator.TotalPages 1 }}
+    <footer class="page-footer">
+        <nav class="pagination">
+            {{- if $paginator.HasPrev }}
+            <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
+                «&nbsp;{{ i18n "prev_page" }}&nbsp;
+                {{- if (.Param "ShowPageNums") }}
+                {{- sub $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}
+                {{- end }}
+            </a>
+            {{- end }}
+            {{- if $paginator.HasNext }}
+            <a class="next" href="{{ $paginator.Next.URL | absURL }}">
+                {{- i18n "next_page" }}&nbsp;
+                {{- if (.Param "ShowPageNums") }}
+                {{- add 1 $paginator.PageNumber }}/{{ $paginator.TotalPages }}
+                {{- end }}&nbsp;»
+            </a>
+            {{- end }}
+        </nav>
+    </footer>
+    {{- end }}
+{{- end }}
+
+{{- end }}{{- /* end main */ -}}
