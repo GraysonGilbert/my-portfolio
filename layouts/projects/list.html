@@ -22,22 +22,12 @@
 {{- $uniqueTags := $allTags | uniq | sort }}
 
 {{- /* ── Tag filter bar ───────────────────────────────────── */}}
-<div class="filter-container">
-    <div class="filter-header">
-        <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
-        </svg>
-        <span class="filter-title">Filter by Tag</span>
-        <span class="filter-results" id="filter-results">{{ len $allProjects }} projects</span>
-    </div>
-    <div class="tag-filter-bar" id="tag-filter-bar">
-        <button class="filter-pill filter-pill-active" data-tag="all">All</button>
-        {{- range $uniqueTags }}
-        <button class="filter-pill" data-tag="{{ . }}">{{ . }}</button>
-        {{- end }}
-    </div>
+<div class="tag-filter-bar" id="tag-filter-bar">
+    <span class="tag-filter-label">Filter:</span>
+    <button class="project-tag tag-filter-btn tag-active" data-tag="all">All</button>
+    {{- range $uniqueTags }}
+    <button class="project-tag tag-filter-btn" data-tag="{{ . }}">{{ . }}</button>
+    {{- end }}
 </div>
 
 {{- /* ── Project cards grid ──────────────────────────────── */}}
@@ -78,51 +68,40 @@
 
 {{- /* ── Empty state ─────────────────────────────────────── */}}
 <p class="projects-empty-msg" id="projects-empty-msg" style="display:none;">
-    No projects match that filter. <button class="filter-clear-link" id="filter-clear">Clear filter</button>
+    No projects match that filter.
 </p>
 
 {{- /* ── Client-side tag filter script ─────────────────── */}}
 <script>
 (function () {
-    const bar     = document.getElementById('tag-filter-bar');
-    const grid    = document.getElementById('projects-grid');
-    const empty   = document.getElementById('projects-empty-msg');
-    const counter = document.getElementById('filter-results');
-    const clearBtn = document.getElementById('filter-clear');
-    const total   = grid.querySelectorAll('.project-card').length;
+    const bar   = document.getElementById('tag-filter-bar');
+    const grid  = document.getElementById('projects-grid');
+    const empty = document.getElementById('projects-empty-msg');
+    let active  = 'all';
 
-    function applyFilter(tag) {
-        bar.querySelectorAll('.filter-pill').forEach(b => {
-            b.classList.toggle('filter-pill-active', b.dataset.tag === tag);
-        });
+    bar.addEventListener('click', function (e) {
+        const btn = e.target.closest('.tag-filter-btn');
+        if (!btn) return;
 
+        active = btn.dataset.tag;
+
+        // Update active button style
+        bar.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('tag-active'));
+        btn.classList.add('tag-active');
+
+        // Show / hide cards
         let visible = 0;
         grid.querySelectorAll('.project-card').forEach(card => {
             const tags = JSON.parse(card.dataset.tags || '[]');
-            const show = tag === 'all' || tags.includes(tag);
+            const show = active === 'all' || tags.includes(active);
             card.style.display = show ? '' : 'none';
             if (show) visible++;
         });
 
-        counter.textContent = tag === 'all'
-            ? total + ' projects'
-            : visible + ' of ' + total + ' projects';
-
         empty.style.display = visible === 0 ? 'block' : 'none';
-    }
-
-    bar.addEventListener('click', function (e) {
-        const btn = e.target.closest('.filter-pill');
-        if (!btn) return;
-        applyFilter(btn.dataset.tag);
     });
-
-    if (clearBtn) {
-        clearBtn.addEventListener('click', function () {
-            applyFilter('all');
-        });
-    }
 })();
 </script>
 
 {{- end }}{{- /* end main */ -}}
+

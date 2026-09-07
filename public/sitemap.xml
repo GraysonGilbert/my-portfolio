@@ -101,5 +101,7 @@
     <loc>http://192.168.1.169:1314/about/</loc>
   </url><url>
     <loc>http://192.168.1.169:1314/categories/</loc>
+  </url><url>
+    <loc>http://192.168.1.169:1314/skills/</loc>
   </url>
 </urlset>

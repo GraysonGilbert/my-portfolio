@@ -76,12 +76,22 @@
       <link>http://192.168.1.169:1314/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://192.168.1.169:1314/about/</guid>
-      <description>&lt;hr&gt;
-&lt;h2 id=&#34;layout-archives&#34;&gt;title: &amp;ldquo;About Me&amp;rdquo;
-layout: &amp;ldquo;archives&amp;rdquo;&lt;/h2&gt;
-&lt;p&gt;I am a Robotics and Embedded Systems Engineer focused on bridging the gap between hardware and intelligent software. I recently graduated with a Master of Science in Robotics (May 2026), and my expertise spans from writing C++ perception pipelines to designing multi-layer printed circuit boards for automated manufacturing.&lt;/p&gt;
+      <description>&lt;p&gt;I am a Robotics and Embedded Systems Engineer focused on bridging the gap between hardware and intelligent software. I recently graduated with a Master of Science in Robotics (May 2026), and my expertise spans from writing C++ perception pipelines to designing multi-layer printed circuit boards for automated manufacturing.&lt;/p&gt;
 &lt;h3 id=&#34;what-i-do&#34;&gt;What I Do&lt;/h3&gt;
-&lt;p&gt;I enjoy owning the entire hardware-software stack. Some of my core technical focus areas include:&lt;/p&gt;</description>
+&lt;p&gt;I enjoy owning the entire hardware-software stack. Some of my core technical focus areas include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Embedded Hardware:&lt;/strong&gt; Designing multi-layer schematics and layouts in KiCad, managing power distribution, and implementing firmware for microcontrollers like the STM32F407VET6 and ESP32 series.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Robotics &amp;amp; Autonomy:&lt;/strong&gt; Building multi-agent simulation architectures in ROS 2, Webots, and MuJoCo, and implementing closed-loop Field Oriented Control for brushless DC motors.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Machine Learning:&lt;/strong&gt; Training reinforcement learning models (specifically Proximal Policy Optimization) in custom Gymnasium environments for zero-shot Sim2Real transfer onto embedded hardware.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My work is heavily hands-on. Recently, I had the opportunity to contribute to an oceanographic survey that deployed a microSAS sonar sensor on an autonomous underwater vehicle to capture sub-inch resolution acoustic images of the USS Monitor shipwreck.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Skills &amp; Tech</title>
+      <link>http://192.168.1.169:1314/skills/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://192.168.1.169:1314/skills/</guid>
+      <description>A detailed breakdown of my technical background — tools, languages, hardware, and more.</description>
     </item>
   </channel>
 </rss>

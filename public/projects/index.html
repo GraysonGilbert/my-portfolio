@@ -10,7 +10,7 @@
 <meta name="description" content="A collection of my engineering and robotics projects spanning embedded hardware, autonomy, machine learning, and more.">
 <meta name="author" content="">
 <link rel="canonical" href="http://192.168.1.169:1314/projects/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.92ac1f7a14eddd96560c7de2df8a72aa07414ee31f9c435526f6a3e632142499.css" integrity="sha256-kqwfehTt3ZZWDH3i34pyqgdBTuMfnENVJvaj5jIUJJk=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.3e2a7b3d2c5b8f56f19c1127353ff7013375ddb0745f13e9dc3edfa77ff589ce.css" integrity="sha256-Pip7PSxbj1bxnBEnNT/3ATN13bB0XxPp3D7fp3/1ic4=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://192.168.1.169:1314/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="http://192.168.1.169:1314/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://192.168.1.169:1314/favicon-32x32.png">
@@ -219,39 +219,29 @@
         autonomy, machine learning, and more. Click any card to read the full write-up.
     </p>
 </header>
-<div class="filter-container">
-    <div class="filter-header">
-        <svg class="filter-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
-        </svg>
-        <span class="filter-title">Filter by Tag</span>
-        <span class="filter-results" id="filter-results">9 projects</span>
-    </div>
-    <div class="tag-filter-bar" id="tag-filter-bar">
-        <button class="filter-pill filter-pill-active" data-tag="all">All</button>
-        <button class="filter-pill" data-tag="AI">AI</button>
-        <button class="filter-pill" data-tag="Autonomy">Autonomy</button>
-        <button class="filter-pill" data-tag="C&#43;&#43;">C&#43;&#43;</button>
-        <button class="filter-pill" data-tag="Computer Vision">Computer Vision</button>
-        <button class="filter-pill" data-tag="Control Systems">Control Systems</button>
-        <button class="filter-pill" data-tag="Embedded">Embedded</button>
-        <button class="filter-pill" data-tag="Embedded Hardware">Embedded Hardware</button>
-        <button class="filter-pill" data-tag="KiCad">KiCad</button>
-        <button class="filter-pill" data-tag="Machine Learning">Machine Learning</button>
-        <button class="filter-pill" data-tag="Manipulation">Manipulation</button>
-        <button class="filter-pill" data-tag="OpenCV">OpenCV</button>
-        <button class="filter-pill" data-tag="Path Planning">Path Planning</button>
-        <button class="filter-pill" data-tag="PCB Design">PCB Design</button>
-        <button class="filter-pill" data-tag="Python">Python</button>
-        <button class="filter-pill" data-tag="Robotics">Robotics</button>
-        <button class="filter-pill" data-tag="ROS 2">ROS 2</button>
-        <button class="filter-pill" data-tag="Search Algorithms">Search Algorithms</button>
-        <button class="filter-pill" data-tag="Sonar">Sonar</button>
-        <button class="filter-pill" data-tag="State Estimation">State Estimation</button>
-        <button class="filter-pill" data-tag="STM32">STM32</button>
-    </div>
+<div class="tag-filter-bar" id="tag-filter-bar">
+    <span class="tag-filter-label">Filter:</span>
+    <button class="project-tag tag-filter-btn tag-active" data-tag="all">All</button>
+    <button class="project-tag tag-filter-btn" data-tag="AI">AI</button>
+    <button class="project-tag tag-filter-btn" data-tag="Autonomy">Autonomy</button>
+    <button class="project-tag tag-filter-btn" data-tag="C&#43;&#43;">C&#43;&#43;</button>
+    <button class="project-tag tag-filter-btn" data-tag="Computer Vision">Computer Vision</button>
+    <button class="project-tag tag-filter-btn" data-tag="Control Systems">Control Systems</button>
+    <button class="project-tag tag-filter-btn" data-tag="Embedded">Embedded</button>
+    <button class="project-tag tag-filter-btn" data-tag="Embedded Hardware">Embedded Hardware</button>
+    <button class="project-tag tag-filter-btn" data-tag="KiCad">KiCad</button>
+    <button class="project-tag tag-filter-btn" data-tag="Machine Learning">Machine Learning</button>
+    <button class="project-tag tag-filter-btn" data-tag="Manipulation">Manipulation</button>
+    <button class="project-tag tag-filter-btn" data-tag="OpenCV">OpenCV</button>
+    <button class="project-tag tag-filter-btn" data-tag="Path Planning">Path Planning</button>
+    <button class="project-tag tag-filter-btn" data-tag="PCB Design">PCB Design</button>
+    <button class="project-tag tag-filter-btn" data-tag="Python">Python</button>
+    <button class="project-tag tag-filter-btn" data-tag="Robotics">Robotics</button>
+    <button class="project-tag tag-filter-btn" data-tag="ROS 2">ROS 2</button>
+    <button class="project-tag tag-filter-btn" data-tag="Search Algorithms">Search Algorithms</button>
+    <button class="project-tag tag-filter-btn" data-tag="Sonar">Sonar</button>
+    <button class="project-tag tag-filter-btn" data-tag="State Estimation">State Estimation</button>
+    <button class="project-tag tag-filter-btn" data-tag="STM32">STM32</button>
 </div>
 <div class="projects-page-grid" id="projects-grid">
     <a class="project-card"
@@ -436,48 +426,36 @@
     </a>
 </div>
 <p class="projects-empty-msg" id="projects-empty-msg" style="display:none;">
-    No projects match that filter. <button class="filter-clear-link" id="filter-clear">Clear filter</button>
+    No projects match that filter.
 </p>
 <script>
 (function () {
-    const bar     = document.getElementById('tag-filter-bar');
-    const grid    = document.getElementById('projects-grid');
-    const empty   = document.getElementById('projects-empty-msg');
-    const counter = document.getElementById('filter-results');
-    const clearBtn = document.getElementById('filter-clear');
-    const total   = grid.querySelectorAll('.project-card').length;
+    const bar   = document.getElementById('tag-filter-bar');
+    const grid  = document.getElementById('projects-grid');
+    const empty = document.getElementById('projects-empty-msg');
+    let active  = 'all';
 
-    function applyFilter(tag) {
-        bar.querySelectorAll('.filter-pill').forEach(b => {
-            b.classList.toggle('filter-pill-active', b.dataset.tag === tag);
-        });
+    bar.addEventListener('click', function (e) {
+        const btn = e.target.closest('.tag-filter-btn');
+        if (!btn) return;
 
+        active = btn.dataset.tag;
+
+        
+        bar.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('tag-active'));
+        btn.classList.add('tag-active');
+
+        
         let visible = 0;
         grid.querySelectorAll('.project-card').forEach(card => {
             const tags = JSON.parse(card.dataset.tags || '[]');
-            const show = tag === 'all' || tags.includes(tag);
+            const show = active === 'all' || tags.includes(active);
             card.style.display = show ? '' : 'none';
             if (show) visible++;
         });
 
-        counter.textContent = tag === 'all'
-            ? total + ' projects'
-            : visible + ' of ' + total + ' projects';
-
         empty.style.display = visible === 0 ? 'block' : 'none';
-    }
-
-    bar.addEventListener('click', function (e) {
-        const btn = e.target.closest('.filter-pill');
-        if (!btn) return;
-        applyFilter(btn.dataset.tag);
     });
-
-    if (clearBtn) {
-        clearBtn.addEventListener('click', function () {
-            applyFilter('all');
-        });
-    }
 })();
 </script>
     </main>
