@@ -2,12 +2,10 @@
 title: "Sim2Real Transfer: Robust RL Control of a Furuta Pendulum"
 date: 2026-05-01
 tags: ["Robotics", "Machine Learning", "Embedded", "C++", "Python"]
-summary: "Trained a PPO control policy in a custom MuJoCo Gymnasium environment and achieved zero-shot transfer onto an ESP32 microcontroller — balancing continuously for over an hour on physical hardware with no additional tuning."
+summary: "Trained a PPO control policy in a custom MuJoCo Gymnasium environment and achieved zero-shot transfer onto an ESP32 microcontroller. Balances continuously for over an hour on physical hardware with no additional tuning."
 cover:
-  image: "images/projects/sim2real/sim2real.jpg"
   image: "images/projects/sim2real/sim2real-thumbnail.png"
   alt: "Sim2Real Furuta Pendulum — physical hardware and MuJoCo simulation"
-  hiddenInSingle: false
   hiddenInSingle: true
 weight: 1
 ---
@@ -33,17 +31,16 @@ Bridging the gap between high-fidelity physics simulation and real-world robotic
   </div>
 </div>
 
-<div class="project-video-short-wrapper">
-  <div class="project-video-short">
-    <iframe
-      src="https://www.youtube.com/embed/GyXinH8Eepk"
-      title="Sim2Real Furuta Pendulum — swing-up demo"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+<div class="project-video">
+  <iframe
+    src="https://www.youtube.com/embed/-vzqEX3e73E"
+    title="Sim2Real Furuta Pendulum — swing-up demo"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
 </div>
+
 
 ---
 
@@ -52,7 +49,6 @@ Bridging the gap between high-fidelity physics simulation and real-world robotic
 The physical system was designed entirely from scratch in Fusion 360 and manufactured via FDM 3D printing. The Furuta pendulum configuration consists of a motorized horizontal arm (rotor) and a free-swinging vertical pendulum link. All mechanical components were designed to be lightweight while maintaining the rigid joint geometry required for accurate dynamic modeling.
 
 <div class="project-figure">
-  <img src="/images/projects/sim2real/exploded-assembly.jpg" alt="Exploded CAD assembly view of the Furuta pendulum" />
   <img src="/images/projects/sim2real/exploded-assembly.png" alt="Exploded CAD assembly view of the Furuta pendulum" />
   <p class="project-caption">Exploded assembly view — the full pendulum mechanism with motor mount, rotor arm, and pendulum link.</p>
 </div>
@@ -61,7 +57,7 @@ The physical system was designed entirely from scratch in Fusion 360 and manufac
 
 ## Simulation Development & Calibration
 
-A high-fidelity MuJoCo physics simulation was the foundation of the entire project. Getting the sim-to-real transfer to work required the simulation to be **meticulously calibrated** to match the physical system — not just visually, but dynamically.
+A high-fidelity MuJoCo physics simulation was the foundation of the entire project. Getting the sim-to-real transfer to work required the simulation to be **meticulously calibrated** to match the physical system.
 
 Two isolated calibration experiments were designed to independently characterize and tune the key physical parameters before any RL training began.
 
@@ -99,7 +95,6 @@ The rotor arm was driven at a fixed command and released, isolating the motor's 
 
 ## Reinforcement Learning
 
-
 ### Training Methodology
 
 A **Proximal Policy Optimization (PPO)** agent was trained in a custom Gymnasium environment wrapping the calibrated MuJoCo simulation. Several techniques were combined to maximize real-world robustness:
@@ -108,7 +103,7 @@ A **Proximal Policy Optimization (PPO)** agent was trained in a custom Gymnasium
 
 **Domain Randomization** — On every episode reset, physical parameters were sampled randomly within calibrated bounds: pendulum mass, motor torque limits, and joint damping coefficients. This forced the policy to generalize across the range of hardware variation rather than overfit to a single nominal model.
 
-**Noise & Latency Injection** — Manual velocity noise was added to all observations, and action latency buffers were used to simulate communication delays between the inference engine and the motor controller — directly mimicking the timing characteristics of the embedded system.
+**Noise & Latency Injection** — Manual velocity noise was added to all observations, and action latency buffers were used to simulate communication delays between the inference engine and the motor controller, directly mimicking the timing characteristics of the embedded system.
 
 <div class="project-figure">
   <img src="/images/projects/sim2real/tensor_board_training.jpg" alt="TensorBoard training curves — PPO policy reward over training steps" />
@@ -117,29 +112,11 @@ A **Proximal Policy Optimization (PPO)** agent was trained in a custom Gymnasium
 
 ---
 
-## Hardware Debugging & Observation Logging
-
-After initial deployment, observation logging was added to both the simulation and the physical hardware to diagnose discrepancies between the two environments. Side-by-side comparison of the logged state signals — joint angles, velocities, and motor commands — allowed pinpointing any remaining mismatches in sensor scaling, timing, or coordinate conventions before declaring a clean transfer.
-
-<div class="project-compare-grid">
-  <div class="project-compare-item">
-    <span class="project-compare-label">Simulation</span>
-    <img src="/images/projects/sim2real/simulated_observation_space.jpg" alt="Simulated observation space logging" />
-  </div>
-  <div class="project-compare-item">
-    <span class="project-compare-label">Physical Hardware</span>
-    <img src="/images/projects/sim2real/physical_observation_space.jpg" alt="Physical hardware observation space logging" />
-  </div>
-</div>
-
----
-
 ## Embedded Deployment
-
 
 ### Exporting the Policy
 
-After training, the final PyTorch model weights were exported directly as a **C++ header file** — a flat array of floating-point values representing the neural network. No ONNX runtime, no interpreter, no Python: the entire forward pass was reimplemented in bare C++ on the microcontroller.
+After training, the final PyTorch model weights were exported directly as a flat array of floating-point values representing the neural network in a **C++ header file**.
 
 ### Dual-Core Architecture on ESP32
 
@@ -185,13 +162,12 @@ The first deployment onto physical hardware did not work. The pendulum would imm
   </div>
 </div>
 
-The logs immediately revealed the issue: the SPI encoder readings from the physical AS5047P were **sign-inverted** relative to the simulation's coordinate convention. The motor was receiving the correct torque magnitude but driving the pendulum in the wrong direction on every step. A single sign flip in the firmware resolved the issue entirely — no retraining, no reward shaping, no parameter adjustment. The policy worked reliably from that point forward.
+The logs immediately revealed the issue: the SPI encoder readings from the physical AS5047P were **sign-inverted** relative to the simulation's coordinate convention. The motor was receiving the correct torque magnitude but driving the pendulum in the wrong direction on every step. A single sign flip in the firmware resolved the issue entirely, no retraining, no reward shaping, no parameter adjustment. The policy worked reliably from that point forward.
 
 ---
 
 ## Results
 
-The trained policy was deployed onto the physical hardware with no additional tuning of any kind. The system immediately executed swing-up maneuvers and sustained continuous balance.
 <div class="project-video">
   <iframe
     src="https://www.youtube.com/embed/OBtJI40cq7E"
@@ -202,8 +178,4 @@ The trained policy was deployed onto the physical hardware with no additional tu
   </iframe>
 </div>
 
-<div class="project-figure">
-  <img src="/images/projects/sim2real/timelapse.png" alt="Timelapse of the Furuta pendulum balancing for over one hour" />
-  <p class="project-caption">Timelapse of the physical system executing the learned policy — continuous balance maintained for over one hour.</p>
-</div>
-The trained policy achieved continuous balance for over one hour on the first clean run after the encoder sign fix — with zero modifications to the learned weights. The zero-shot transfer was validated not just by the duration of balance, but by the quality of the swing-up: the policy consistently executed the correct energy-pumping maneuver learned entirely in simulation.
+The trained policy achieved continuous balance for over one hour before powering off the system. I have yet to find the upper bound for the inverted pendulum balance time. The zero-shot transfer was validated not just by the duration of balance, but by the quality of the swing-up: the policy consistently executed the correct energy-pumping maneuver learned entirely in simulation.
