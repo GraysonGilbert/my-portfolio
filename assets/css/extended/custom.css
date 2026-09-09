@@ -538,7 +538,230 @@
 }
 
 
+
+
+/* ══════════════════════════════════════════════════════════════
+   Project Detail Pages
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Stats bar ──────────────────────────────────────────────── */
+.project-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1.5rem 0 2rem;
+}
+
+.project-stat {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.75rem;
+    border-right: 1px solid var(--border);
+    background: var(--entry);
+    text-align: center;
+}
+
+.project-stat:last-child {
+    border-right: none;
+}
+
+.project-stat-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+}
+
+.project-stat-label {
+    font-size: 0.72rem;
+    color: var(--secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 0.3rem;
+}
+
+/* ── Figures & captions ─────────────────────────────────────── */
+.project-figure {
+    margin: 1.5rem 0 2rem;
+}
+
+.project-figure img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: block;
+}
+
+.project-caption {
+    font-size: 0.82rem;
+    color: var(--secondary);
+    text-align: center;
+    margin-top: 0.6rem;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* ── Before / After comparison grid ────────────────────────── */
+.project-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.25rem 0 2rem;
+}
+
+.project-compare-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.project-compare-item img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: block;
+}
+
+.project-compare-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--secondary);
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.15rem 0.55rem;
+    align-self: flex-start;
+}
+
+/* ── Dual-core architecture cards ───────────────────────────── */
+.project-arch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.25rem 0 1.75rem;
+}
+
+.project-arch-card {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+}
+
+.project-arch-core {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    margin-bottom: 0.35rem;
+}
+
+.project-arch-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+}
+
+.project-arch-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.85rem;
+    color: var(--content);
+    line-height: 1.7;
+}
+
+.project-arch-list li {
+    margin-bottom: 0.15rem;
+}
+
+/* ── Mobile: stack comparison grids ────────────────────────── */
+@media (max-width: 600px) {
+    .project-compare-grid,
+    .project-arch-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .project-stat {
+        flex-basis: 50%;
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .project-stat:nth-child(2n) {
+        border-right: none;
+    }
+
+    .project-stat:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+}
+
+/* ── Video embeds ───────────────────────────────────────────── */
+
+/* Standard 16:9 YouTube video */
+.project-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin: 1.5rem 0 2rem;
+}
+
+.project-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Vertical 9:16 YouTube Shorts — centered, max-width constrained */
+.project-video-short-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0 2rem;
+}
+
+.project-video-short {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.project-video-short iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+
 /* ── Misc ───────────────────────────────────────────────────── */
+
 
 /* Remove the PaperMod "first-entry" large layout when we have our own hero */
 .home-info-custom + .post-entry:first-of-type {

@@ -5,12 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Sim2Real Rotary Inverted Pendulum | Grayson Gilbert</title>
+<title>Sim2Real Transfer: Robust RL Control of a Furuta Pendulum | Grayson Gilbert</title>
 <meta name="keywords" content="Robotics, Machine Learning, Embedded, C&#43;&#43;, Python">
-<meta name="description" content="Trained a PPO control policy in a custom MuJoCo Gymnasium environment and achieved zero-shot transfer onto an ESP32 microcontroller.">
+<meta name="description" content="Trained a PPO control policy in a custom MuJoCo Gymnasium environment and achieved zero-shot transfer onto an ESP32 microcontroller — balancing continuously for over an hour on physical hardware with no additional tuning.">
 <meta name="author" content="">
 <link rel="canonical" href="http://192.168.1.169:1314/projects/sim2real-pendulum/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.3e2a7b3d2c5b8f56f19c1127353ff7013375ddb0745f13e9dc3edfa77ff589ce.css" integrity="sha256-Pip7PSxbj1bxnBEnNT/3ATN13bB0XxPp3D7fp3/1ic4=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc3413a8270fb9e5ebd1f8265f6999a34f1b6b502e700ca7b096e1d53007e779.css" integrity="sha256-/DQTqCcPueXr0fgmX2mZo08ba1AucAynsJbh1TAH53k=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://192.168.1.169:1314/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="http://192.168.1.169:1314/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://192.168.1.169:1314/favicon-32x32.png">
@@ -226,7 +226,7 @@
     </svg>
 </nav>
     <h1 class="post-title entry-hint-parent">
-      Sim2Real Rotary Inverted Pendulum
+      Sim2Real Transfer: Robust RL Control of a Furuta Pendulum
     </h1>
     <div class="post-meta">
 
@@ -234,15 +234,135 @@
 
 </div>
   </header> 
-<figure class="entry-cover">
-        <a href="http://192.168.1.169:1314/images/projects/sim2real.jpg" target="_blank" rel="noopener noreferrer">
-        <img loading="eager" src="http://192.168.1.169:1314/images/projects/sim2real.jpg" alt="Sim2Real Rotary Inverted Pendulum hardware and simulation">
-        </a>
-        
-</figure>
-  <div class="post-content md-content"><h3 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h3>
-<p>This project focused on bridging reinforcement learning with physical embedded hardware. I designed the CAD models, 3D printed the physical components, and built a custom Gymnasium training environment in MuJoCo.</p>
-<p>After training the Proximal Policy Optimization (PPO) policy, I exported the neural network weights to a C++ header file and deployed the inference engine onto a custom ESP32 hardware setup for real-time balancing.</p>
+  <div class="post-content md-content"><p>Bridging the gap between high-fidelity physics simulation and real-world robotic hardware is a notoriously difficult challenge. This project demonstrates the successful <strong>zero-shot sim-to-real transfer</strong> of a deep reinforcement learning policy to control a highly non-linear, 2-DoF underactuated Furuta pendulum — executing swing-up maneuvers and maintaining continuous balance for <strong>over one hour</strong> on physical hardware without a single line of hardware-specific tuning.</p>
+<div class="project-stats">
+  <div class="project-stat">
+    <span class="project-stat-value">2-DoF</span>
+    <span class="project-stat-label">Underactuated System</span>
+  </div>
+  <div class="project-stat">
+    <span class="project-stat-value">100 Hz</span>
+    <span class="project-stat-label">Embedded Control Loop</span>
+  </div>
+  <div class="project-stat">
+    <span class="project-stat-value">&gt;1 Hour</span>
+    <span class="project-stat-label">Continuous Balance</span>
+  </div>
+  <div class="project-stat">
+    <span class="project-stat-value">Zero-Shot</span>
+    <span class="project-stat-label">No Hardware Tuning</span>
+  </div>
+</div>
+<div class="project-video-short-wrapper">
+  <div class="project-video-short">
+    <iframe
+      src="https://www.youtube.com/embed/GyXinH8Eepk"
+      title="Sim2Real Furuta Pendulum — swing-up demo"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+<hr>
+<h2 id="mechanical-design">Mechanical Design<a hidden class="anchor" aria-hidden="true" href="#mechanical-design">#</a></h2>
+<p>The physical system was designed entirely from scratch in Fusion 360 and manufactured via FDM 3D printing. The Furuta pendulum configuration consists of a motorized horizontal arm (rotor) and a free-swinging vertical pendulum link. All mechanical components were designed to be lightweight while maintaining the rigid joint geometry required for accurate dynamic modeling.</p>
+<div class="project-figure">
+  <img src="/images/projects/sim2real/exploded-assembly.png" alt="Exploded CAD assembly view of the Furuta pendulum" />
+  <p class="project-caption">Exploded assembly view — the full pendulum mechanism with motor mount, rotor arm, and pendulum link.</p>
+</div>
+<hr>
+<h2 id="simulation-development--calibration">Simulation Development &amp; Calibration<a hidden class="anchor" aria-hidden="true" href="#simulation-development--calibration">#</a></h2>
+<p>A high-fidelity MuJoCo physics simulation was the foundation of the entire project. Getting the sim-to-real transfer to work required the simulation to be <strong>meticulously calibrated</strong> to match the physical system — not just visually, but dynamically.</p>
+<p>Two isolated calibration experiments were designed to independently characterize and tune the key physical parameters before any RL training began.</p>
+<h3 id="pendulum-drop-test">Pendulum Drop Test<a hidden class="anchor" aria-hidden="true" href="#pendulum-drop-test">#</a></h3>
+<p>The pendulum link was released from a fixed angle and the free-swing decay was recorded. The simulation&rsquo;s inertia and damping parameters were iteratively adjusted until the simulated drop response matched the physical hardware response.</p>
+<div class="project-compare-grid">
+  <div class="project-compare-item">
+    <span class="project-compare-label">Before Calibration</span>
+    <img src="/images/projects/sim2real/initial_pendulum_drop_test.jpg" alt="Initial pendulum drop test — simulation vs hardware mismatch" />
+  </div>
+  <div class="project-compare-item">
+    <span class="project-compare-label">After Calibration</span>
+    <img src="/images/projects/sim2real/tuned_pendulum_drop_test.jpg" alt="Tuned pendulum drop test — simulation matches hardware" />
+  </div>
+</div>
+<h3 id="rotor-friction-test">Rotor Friction Test<a hidden class="anchor" aria-hidden="true" href="#rotor-friction-test">#</a></h3>
+<p>The rotor arm was driven at a fixed command and released, isolating the motor&rsquo;s friction and back-EMF characteristics. This independently constrained the motor torque model in the simulation.</p>
+<div class="project-compare-grid">
+  <div class="project-compare-item">
+    <span class="project-compare-label">Before Calibration</span>
+    <img src="/images/projects/sim2real/inital_rotor_isolation_test.jpg" alt="Initial rotor isolation test — friction model mismatch" />
+  </div>
+  <div class="project-compare-item">
+    <span class="project-compare-label">After Calibration</span>
+    <img src="/images/projects/sim2real/tuned_rotor_isolation_test.jpg" alt="Tuned rotor isolation test — friction model matched" />
+  </div>
+</div>
+<hr>
+<h2 id="reinforcement-learning">Reinforcement Learning<a hidden class="anchor" aria-hidden="true" href="#reinforcement-learning">#</a></h2>
+<h3 id="training-methodology">Training Methodology<a hidden class="anchor" aria-hidden="true" href="#training-methodology">#</a></h3>
+<p>A <strong>Proximal Policy Optimization (PPO)</strong> agent was trained in a custom Gymnasium environment wrapping the calibrated MuJoCo simulation. Several techniques were combined to maximize real-world robustness:</p>
+<p><strong>Curriculum Learning</strong> — A multi-phase reward structure progressively taught the agent distinct sub-behaviors in sequence: stabilizing near the top, catching the pendulum from near-upright positions, and finally executing full swing-up maneuvers from rest. Training was gated so the agent could not advance to the next phase until the current one was reliably solved.</p>
+<p><strong>Domain Randomization</strong> — On every episode reset, physical parameters were sampled randomly within calibrated bounds: pendulum mass, motor torque limits, and joint damping coefficients. This forced the policy to generalize across the range of hardware variation rather than overfit to a single nominal model.</p>
+<p><strong>Noise &amp; Latency Injection</strong> — Manual velocity noise was added to all observations, and action latency buffers were used to simulate communication delays between the inference engine and the motor controller — directly mimicking the timing characteristics of the embedded system.</p>
+<div class="project-figure">
+  <img src="/images/projects/sim2real/tensor_board_training.jpg" alt="TensorBoard training curves — PPO policy reward over training steps" />
+  <p class="project-caption">TensorBoard training curves showing episode reward progression across curriculum phases. The distinct reward steps correspond to each phase unlock.</p>
+</div>
+<hr>
+<h2 id="embedded-deployment">Embedded Deployment<a hidden class="anchor" aria-hidden="true" href="#embedded-deployment">#</a></h2>
+<h3 id="exporting-the-policy">Exporting the Policy<a hidden class="anchor" aria-hidden="true" href="#exporting-the-policy">#</a></h3>
+<p>After training, the final PyTorch model weights were exported directly as a <strong>C++ header file</strong> — a flat array of floating-point values representing the neural network. No ONNX runtime, no interpreter, no Python: the entire forward pass was reimplemented in bare C++ on the microcontroller.</p>
+<h3 id="dual-core-architecture-on-esp32">Dual-Core Architecture on ESP32<a hidden class="anchor" aria-hidden="true" href="#dual-core-architecture-on-esp32">#</a></h3>
+<p>The ESP32&rsquo;s dual-core architecture was leveraged to strictly isolate compute-intensive inference from real-time motor control:</p>
+<div class="project-arch-grid">
+  <div class="project-arch-card">
+    <div class="project-arch-core">Core 0</div>
+    <div class="project-arch-title">RL Inference & State Estimation</div>
+    <ul class="project-arch-list">
+      <li>Reads encoder positions via SPI at 100 Hz</li>
+      <li>Runs neural network forward pass</li>
+      <li>Calculates target torque command</li>
+    </ul>
+  </div>
+  <div class="project-arch-card">
+    <div class="project-arch-core">Core 1</div>
+    <div class="project-arch-title">Real-Time Motor Control</div>
+    <ul class="project-arch-list">
+      <li>Executes Field Oriented Control (FOC)</li>
+      <li>Drives BLDC gimbal motor via SimpleFOC</li>
+      <li>Handles current sensing & torque execution</li>
+    </ul>
+  </div>
+</div>
+<p>Torque Field Oriented Control was used for actuation, providing precise, linear torque commands rather than velocity or position targets. This gave the RL policy direct, low-latency authority over the motor output, which was essential for the fast dynamics of the swing-up maneuver.</p>
+<hr>
+<h2 id="hardware-debugging--observation-logging">Hardware Debugging &amp; Observation Logging<a hidden class="anchor" aria-hidden="true" href="#hardware-debugging--observation-logging">#</a></h2>
+<p>The first deployment onto physical hardware did not work. The pendulum would immediately diverge rather than swing up and balance. Rather than retraining or adjusting reward functions, observation logging was added to both the simulation and the physical hardware to directly compare the two state streams side by side.</p>
+<div class="project-compare-grid">
+  <div class="project-compare-item">
+    <span class="project-compare-label">Simulation</span>
+    <img src="/images/projects/sim2real/simulated_observation_space.jpg" alt="Simulated observation space logging" />
+  </div>
+  <div class="project-compare-item">
+    <span class="project-compare-label">Physical Hardware</span>
+    <img src="/images/projects/sim2real/physical_observation_space.jpg" alt="Physical hardware observation space logging" />
+  </div>
+</div>
+<p>The logs immediately revealed the issue: the SPI encoder readings from the physical AS5047P were <strong>sign-inverted</strong> relative to the simulation&rsquo;s coordinate convention. The motor was receiving the correct torque magnitude but driving the pendulum in the wrong direction on every step. A single sign flip in the firmware resolved the issue entirely — no retraining, no reward shaping, no parameter adjustment. The policy worked reliably from that point forward.</p>
+<hr>
+<h2 id="results">Results<a hidden class="anchor" aria-hidden="true" href="#results">#</a></h2>
+<div class="project-video">
+  <iframe
+    src="https://www.youtube.com/embed/OBtJI40cq7E"
+    title="Sim2Real Furuta Pendulum — one hour balance timelapse"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+<p>The trained policy achieved continuous balance for over one hour on the first clean run after the encoder sign fix — with zero modifications to the learned weights. The zero-shot transfer was validated not just by the duration of balance, but by the quality of the swing-up: the policy consistently executed the correct energy-pumping maneuver learned entirely in simulation.</p>
 
 
   </div>

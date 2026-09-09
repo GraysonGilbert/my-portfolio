@@ -9,11 +9,11 @@
     <lastBuildDate>Fri, 01 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://192.168.1.169:1314/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Sim2Real Rotary Inverted Pendulum</title>
+      <title>Sim2Real Transfer: Robust RL Control of a Furuta Pendulum</title>
       <link>http://192.168.1.169:1314/projects/sim2real-pendulum/</link>
       <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
       <guid>http://192.168.1.169:1314/projects/sim2real-pendulum/</guid>
-      <description>Trained a PPO control policy in a custom MuJoCo Gymnasium environment and achieved zero-shot transfer onto an ESP32 microcontroller.</description>
+      <description>Trained a PPO control policy in a custom MuJoCo Gymnasium environment and achieved zero-shot transfer onto an ESP32 microcontroller — balancing continuously for over an hour on physical hardware with no additional tuning.</description>
     </item>
     <item>
       <title>ARRT Connect — Autonomous Robot Racing Team</title>
