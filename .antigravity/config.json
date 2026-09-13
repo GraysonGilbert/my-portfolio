@@ -1,0 +1,22 @@
+{
+  "orchestration": {
+    "primary_agent": "gemini-3.8-flash",
+    "subagent_default": "gemini-3.8-flash-low",
+    "allow_parallel_subagents": false,
+    "max_concurrent_subagents": 1
+  },
+  "limits": {
+    "max_tokens_per_subagent_session": 15000,
+    "max_subagent_depth_turns": 2,
+    "emergency_kill_switch_on_rate_limit_warning": true
+  },
+  "context_management": {
+    "enable_prompt_caching": true,
+    "cache_shared_files": [
+      "config.toml", 
+      "hugo.toml", 
+      "layouts/**/*.html", 
+      "assets/**/*.css"
+    ]
+  }
+}
