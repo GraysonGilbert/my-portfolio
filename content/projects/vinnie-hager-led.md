@@ -4,7 +4,7 @@ date: 2022-08-01
 tags: ["Fabrication", "Electronics", "LED", "Soldering"]
 summary: "Hand-crafted an illuminated wall installation translating the intricate linework of artist Vinnie Hager into physical form. Features dozens of hand-formed flexible LED segments, discrete micro-soldering, high-density concealed wire management, and DFM reflections."
 cover:
-  image: "images/projects/vinnie-hager-led/completed.jpg"
+  image: "images/projects/vinnie-hager-led/thumbnail.jpg"
   alt: "Illuminated custom LED art installation"
   hiddenInSingle: false
 weight: 17

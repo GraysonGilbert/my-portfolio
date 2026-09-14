@@ -4,7 +4,7 @@ date: 2021-01-01
 tags: ["Electronics", "Arduino", "LED", "Embedded", "Fabrication"]
 summary: "Built an interactive wall installation featuring 280 individually addressable NeoPixels in handcrafted wooden hexagonal frames. Programmed custom Arduino C++ firmware with hardware interrupt mode-switching, analog potentiometer brightness mapping, and multi-point 5V power injection."
 cover:
-  image: "images/projects/nanoleaf/nanoleaf-array.jpg"
+  image: "images/projects/nanoleaf/thumbnail.png"
   alt: "Full view of illuminated custom hexagonal NanoLeaf LED array"
   hiddenInSingle: false
 weight: 16

@@ -4,7 +4,7 @@ date: 2022-05-01
 tags: ["Electronics", "LED", "Fabrication", "3D Printing", "Fusion 360"]
 summary: "Engineered and fabricated a custom infinity mirror LED cube from scratch, integrating 300+ individually addressable LEDs, concealed wire routing through structural acrylic tubing, and a Bluetooth smartphone controller — including hardware troubleshooting to resolve matrix voltage drop."
 cover:
-  image: "images/projects/hyper-cube/progress-picture-1.jpg"
+  image: "images/projects/hyper-cube/thumbnail.png"
   alt: "Assembly of the custom Infinity Mirror LED Hyper Cube frame"
   hiddenInSingle: false
 weight: 13

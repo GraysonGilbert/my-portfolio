@@ -4,7 +4,7 @@ date: 2026-05-01
 tags: ["Robotics", "Machine Learning", "Embedded", "C++", "Python"]
 summary: "Trained a PPO control policy in a custom MuJoCo Gymnasium environment and achieved zero-shot transfer onto an ESP32 microcontroller. Balances continuously for over an hour on physical hardware with no additional tuning."
 cover:
-  image: "images/projects/sim2real/sim2real-thumbnail.png"
+  image: "images/projects/sim2real/thumbnail.png"
   alt: "Sim2Real Furuta Pendulum — physical hardware and MuJoCo simulation"
   hiddenInSingle: true
 weight: 1

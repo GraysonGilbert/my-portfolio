@@ -7,6 +7,10 @@ cover:
   image: "images/projects/stm32-mcu-pcb.jpg"
   alt: "STM32 Custom MCU PCB render"
   hiddenInSingle: false
+draft: true
+build:
+  render: never
+  list: never
 weight: 2
 ---
 

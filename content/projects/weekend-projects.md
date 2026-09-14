@@ -4,7 +4,7 @@ date: 2024-01-01
 tags: ["Fabrication", "CAD", "Laser Cutting", "3D Printing", "CNC"]
 summary: "A curated anthology of rapid prototypes, targeted repairs, and community initiatives — spanning CNC-machined marine wayfinding signage, reverse-engineered 3D printed adapters, upcycled laser goods, and fluid flow jug modifications."
 cover:
-  image: "images/projects/weekend-projects/br-sign-installed.jpg"
+  image: "images/projects/weekend-projects/thumbnail.png"
   alt: "CNC-machined marine wayfinding sign installed at neighborhood marina"
   hiddenInSingle: false
 weight: 19

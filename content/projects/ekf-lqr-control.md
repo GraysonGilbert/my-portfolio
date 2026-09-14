@@ -4,7 +4,7 @@ date: 2024-11-01
 tags: ["Control Systems", "Extended Kalman Filter", "LQR", "MATLAB", "Simulink", "State Estimation"]
 summary: "Recreated and verified an augmented 3-state state-space control framework for Underwater Wireless Optical Communication (UWOC). Implemented an Extended Kalman Filter (EKF) with dual-measurement observability paired with a Linear Quadratic Regulator (LQR) in MATLAB/Simulink to achieve sub-two-second optical alignment under attenuation and sensor noise."
 cover:
-  image: "images/projects/ekf-lqr/ekf-plant-block-diagram.png"
+  image: "images/projects/ekf-lqr/thumbnail.png"
   alt: "Simulink model of nonlinear plant and Extended Kalman Filter state estimator"
   hiddenInSingle: true
 weight: 6

@@ -4,7 +4,7 @@ date: 2023-03-01
 tags: ["CNC", "CAD", "CAM", "Fabrication"]
 summary: "Designed and manufactured a custom illuminated sign of the island of Maui on a Shapeoko 3 XXL CNC router, featuring multi-tool CAM toolpaths, custom V-carve engraving, and a recessed LED lighting system."
 cover:
-  image: "images/projects/maui-cnc-sign/finished-maui.jpg"
+  image: "images/projects/maui-cnc-sign/thumbnail.png"
   alt: "Finished illuminated CNC-routed sign of Maui, Hawaii"
   hiddenInSingle: false
 weight: 11

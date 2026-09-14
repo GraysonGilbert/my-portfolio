@@ -4,7 +4,7 @@ date: 2025-03-01
 tags: ["Robotics", "ROS 2", "Manipulation", "Kinematics", "Gazebo", "Python"]
 summary: "Engineered an autonomous multi-station coffee preparation workcell utilizing a Universal Robots UR10e 6-DOF manipulator, Robotiq 2F-140 gripper, and Intel RealSense D435 in ROS 2 Humble and Gazebo. Features analytical DH forward kinematics, Jacobian pseudoinverse trajectory tracking, singularity-free workspace optimization, and joint effort physics stabilization."
 cover:
-  image: "images/projects/barista-robot/demo.png"
+  image: "images/projects/barista-robot/thumbnail.png"
   alt: "Autonomous 6-DOF Barista Robot Gazebo simulation, RViz perception, and ROS 2 control console"
   hiddenInSingle: true
 weight: 5

@@ -4,7 +4,7 @@ date: 2020-06-01
 tags: ["Robotics", "Electronics", "Fabrication", "Embedded", "CAD"]
 summary: "Designed, built, and tuned custom high-performance FPV quadcopters since 2016, developing hands-on mastery in precision micro-soldering, flight controller configuration, PID loop tuning, and custom CAD airframe components."
 cover:
-  image: "images/projects/fpv-drones/drone-iso.jpg"
+  image: "images/projects/fpv-drones/thumbnail.jpg"
   alt: "Custom built high-performance FPV freestyle quadcopter"
   hiddenInSingle: false
 weight: 12

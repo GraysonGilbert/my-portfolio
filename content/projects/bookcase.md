@@ -4,7 +4,7 @@ date: 2023-09-01
 tags: ["CAD", "3D Printing", "Fusion 360", "Fabrication"]
 summary: "Designed and manufactured a custom 3D-printed modular sliding drawer system for the Ikea Billy Bookcase, featuring a low-friction rolling-ball slide mechanism, standardized unit scaling, and a magnetic flush-mount acrylic enclosure."
 cover:
-  image: "images/projects/bookcase/finished-bookcase.jpg"
+  image: "images/projects/bookcase/thumbnail.png"
   alt: "Custom 3D-printed modular storage drawers inside an Ikea Billy Bookcase"
   hiddenInSingle: false
 weight: 10

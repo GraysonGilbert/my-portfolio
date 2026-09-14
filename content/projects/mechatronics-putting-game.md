@@ -3,6 +3,10 @@ title: "Mechatronics Capstone: Interactive Putting Game"
 date: 2022-04-01
 tags: ["Embedded", "Arduino", "Software", "Mechatronics", "Processing", "C++"]
 summary: "Arcade-style interactive golf putting game developed as a junior-year Mechatronics capstone. Bridges physical hardware sensors and Arduino firmware with a custom Processing graphical interface for real-time telemetry, accuracy analytics, and competitive time-trial gameplay."
+draft: true
+build:
+  render: never
+  list: never
 weight: 18
 ---
 

@@ -4,7 +4,7 @@ date: 2022-12-01
 tags: ["Robotics", "IoT", "Embedded", "Python", "CAD", "SolidWorks"]
 summary: "Electromechanical scanner that digitizes physical images using an LED and photoresistor, powered by a Raspberry Pi and controlled wirelessly via a custom web interface. Designed the complete 2-axis X-Y gantry, dual-actuator motion system, and hardware integration as the mechanical lead."
 cover:
-  image: "images/projects/iot-bw-image-scanner/full-assembly.jpg"
+  image: "images/projects/iot-bw-image-scanner/thumbnail.jpg"
   alt: "Full assembly of the IoT electromechanical image scanner"
   hiddenInSingle: false
 weight: 14

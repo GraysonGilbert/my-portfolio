@@ -7,6 +7,10 @@ cover:
   image: "images/projects/turtlebot3-astar.jpg"
   alt: "TurtleBot3 A* path planning"
   hiddenInSingle: false
+draft: true
+build:
+  render: never
+  list: never
 weight: 8
 ---
 

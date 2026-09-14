@@ -4,7 +4,7 @@ date: 2023-06-01
 tags: ["Fabrication", "Laser Cutting", "CAD", "DFM"]
 summary: "Engineered a multi-layer topographical map from raw GIS data through to a streamlined production workflow, fulfilling 43 custom orders with a 75% reduction in total build time and a 50% cut in CNC laser cycle time."
 cover:
-  image: "images/projects/lasercut-maps/styled-first-map.jpg"
+  image: "images/projects/lasercut-maps/thumbnail.jpg"
   alt: "Custom wooden multi-layer topographical laser-cut map"
   hiddenInSingle: false
 weight: 15

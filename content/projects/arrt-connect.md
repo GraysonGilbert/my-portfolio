@@ -7,6 +7,10 @@ cover:
   image: "images/projects/arrt-connect.jpg"
   alt: "ARRT Connect autonomous racing robot"
   hiddenInSingle: false
+draft: true
+build:
+  render: never
+  list: never
 weight: 7
 ---
 

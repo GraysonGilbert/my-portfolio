@@ -4,7 +4,7 @@ date: 2025-08-01
 tags: ["Robotics", "ROS 2", "SLAM", "C++", "Python", "Autonomous Systems"]
 summary: "Scalable multi-robot mapping and autonomous exploration system in ROS 2 Humble and Webots. Orchestrates a TurtleBot3 fleet using slam_toolbox, REP-105 compliant TF trees, deterministic occupancy-grid fusion in mars_overseer, and an automated TDD CI/CD pipeline."
 cover:
-  image: "images/projects/mars/2-robot-slam.png"
+  image: "images/projects/mars/thumbnail.png"
   alt: "Project MARS Multi-Agent Robotic SLAM in Webots and RViz2"
   hiddenInSingle: true
 weight: 3

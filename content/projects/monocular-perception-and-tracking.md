@@ -4,7 +4,7 @@ date: 2024-10-15
 tags: ["Computer Vision", "C++", "YOLOv5", "Depth Anything", "OpenCV", "Machine Learning"]
 summary: "Engineered a production-grade C++ monocular perception library for ACME Robotics fusing YOLOv5 2D object detection with the 'Depth Anything' foundation model. Delivers real-time 3D human obstacle detection and metric spatial localization from a single RGB camera stream, supported by a comprehensive CMake, CTest, Cppcheck, and Doxygen CI/CD suite."
 cover:
-  image: "images/projects/monocular-perception-and-tracking/demo_screenshot.png"
+  image: "images/projects/monocular-perception-and-tracking/thumbnail.png"
   alt: "Monocular 3D perception pipeline detecting humans and estimating metric (X, Y, Z) coordinates"
   hiddenInSingle: true
 weight: 4
