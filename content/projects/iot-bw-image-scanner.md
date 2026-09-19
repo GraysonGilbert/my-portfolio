@@ -7,6 +7,10 @@ cover:
   image: "images/projects/iot-bw-image-scanner/thumbnail.jpg"
   alt: "Full assembly of the IoT electromechanical image scanner"
   hiddenInSingle: false
+draft: true
+build:
+  render: never
+  list: never
 weight: 14
 ---
 

@@ -663,12 +663,32 @@
 }
 
 
-/* ── Dual-core architecture cards ───────────────────────────── */
+/* ── Dual-core and 3-core architecture cards ────────────────── */
 .project-arch-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin: 1.25rem 0 1.75rem;
+}
+
+.project-arch-grid-3col,
+.project-arch-grid.three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.25rem 0 1.75rem;
+}
+
+.project-arch-grid-3col .project-arch-card,
+.project-arch-grid.three-col .project-arch-card {
+    padding: 1.1rem 1rem;
+}
+
+@media (max-width: 768px) {
+    .project-arch-grid-3col,
+    .project-arch-grid.three-col {
+        grid-template-columns: 1fr;
+    }
 }
 
 .project-arch-card {
@@ -744,7 +764,7 @@
     overflow: hidden;
     border-radius: 8px;
     border: 1px solid var(--border);
-    margin: 1.5rem 0 2rem;
+    margin: 1.5rem auto 2rem;
 }
 
 .project-video iframe {

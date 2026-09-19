@@ -1,6 +1,6 @@
 ---
 title: "ACME Monocular Perception & 3D Spatial Tracking Module"
-date: 2024-10-15
+date: 2025-10-18
 tags: ["Computer Vision", "C++", "YOLOv5", "Depth Anything", "OpenCV", "Machine Learning"]
 summary: "Engineered a production-grade C++ monocular perception library for ACME Robotics fusing YOLOv5 2D object detection with the 'Depth Anything' foundation model. Delivers real-time 3D human obstacle detection and metric spatial localization from a single RGB camera stream, supported by a comprehensive CMake, CTest, Cppcheck, and Doxygen CI/CD suite."
 cover:
@@ -10,14 +10,8 @@ cover:
 weight: 4
 ---
 
-The ACME Monocular Perception & 3D Spatial Tracking Module was engineered as the comprehensive midterm project for the ENPM700 Software Development course at the University of Maryland. Designed specifically for ACME Robotics, this software library solves the complex multi-person (\(N \ge 1\)) obstacle detection and spatial tracking problem using exclusively a single monocular video stream. By eliminating the cost, weight, and computational complexity of active LiDAR sensors or stereo camera rigs, this solution provides autonomous mobile robots with robust 3D situational awareness from standard RGB cameras.
+The ACME Monocular Perception and Tracking Module is a C++ software library designed to give autonomous mobile robots 3D situational awareness using only a standard RGB camera. Originally developed for the ENPM700 Software Development course at the University of Maryland, the pipeline fuses YOLOv5 object detection with the Depth Anything monocular depth estimation model. By relying entirely on a monocular video stream, the system tracks multiple people and calculates their relative depth without the cost, weight, or computational overhead of active LiDAR or stereo camera rigs.
 
-<div class="project-stats">
-  <div class="project-stat"><span class="project-stat-value">YOLOv5 + Depth Anything</span><span class="project-stat-label">Dual ONNX Neural Engines</span></div>
-  <div class="project-stat"><span class="project-stat-value">Monocular 3D</span><span class="project-stat-label">Metric Spatial Localization</span></div>
-  <div class="project-stat"><span class="project-stat-value">C++ / OpenCV 4.10</span><span class="project-stat-label">Modular Shared Library</span></div>
-  <div class="project-stat"><span class="project-stat-value">CTest & Cppcheck</span><span class="project-stat-label">Automated QA & CI/CD</span></div>
-</div>
 
 <div class="project-figure">
   <img src="/images/projects/monocular-perception-and-tracking/demo_screenshot.png" alt="Monocular 3D perception pipeline detecting humans and estimating metric (X, Y, Z) coordinates" />
@@ -28,69 +22,56 @@ The ACME Monocular Perception & 3D Spatial Tracking Module was engineered as the
 
 ## Sensor Fusion & Metric Depth Calibration
 
-To bridge the gap between 2D image-plane detections and 3D robot navigation frames, the perception pipeline combines object detection with monocular depth estimation and rigorous geometric calibration.
+The core engineering challenge of this module is translating 2D image-plane data into actual 3D metric coordinates. Since the raw inference is handled by pre-trained models, the C++ pipeline focuses entirely on efficient sensor fusion and spatial back-projection.
 
-### 2D Detection & Bounding Box Generation
-Incoming video frames are processed by an optimized YOLOv5 ONNX model running through the OpenCV DNN module. The network performs high-speed inference to detect human subjects, outputting bounding box coordinates \([u_{min}, v_{min}, u_{max}, v_{max}]\) corresponding to pixel boundaries on the image plane.
+### 2D Detection & Depth Estimation:
+2D Detection & Depth Estimation: Incoming video frames are processed through the OpenCV DNN module. A YOLOv5 model handles the high-speed human detection and bounding box generation, while the Depth Anything model simultaneously outputs a dense relative depth map of the scene. The two model outputs are then combined to determine the absolute depth of detected objects in a given frame.
 
-### Monocular Depth Estimation
-Simultaneously, the frame is evaluated by the Depth Anything foundation model. This neural network generates dense relative depth maps across the entire scene, capturing fine-grained spatial gradients and surface structures without requiring infrared projectors or stereo baselines.
-
-### Metric Scale & Offset Calibration
-Because foundation depth models output arbitrary relative depth values (\(d_{rel}\)), the system applies a linear calibration mapping to convert relative values into metric depth (\(Z\) in meters). Calibration parameters (\(\alpha, \beta\)) are empirically derived using reference objects of known dimensions and configured directly in `DepthProcessor.hpp`:
-<div class="project-math">
-$$Z = \alpha \cdot d_{rel} + \beta$$
-</div>
-
-### 3D Spatial Back-Projection
-Using pinhole camera projection geometry, the 2D bounding box centroid \((u, v)\) and metric depth \(Z\) are transformed into the robot camera coordinate frame \((X, Y, Z)\):
-<div class="project-math">
-$$X = \frac{(u - c_x) \cdot Z}{f_x}, \quad Y = \frac{(v - c_y) \cdot Z}{f_y}$$
-</div>
-where \((f_x, f_y)\) and \((c_x, c_y)\) represent the calibrated camera focal lengths and principal point offsets, yielding metric obstacle positions suitable for collision avoidance and path planning.
+### Metric Calibration: 
+Because foundation models output arbitrary relative depth values, the system applies a linear calibration mapping. Using reference objects of known dimensions, the module calculates a scale factor and offset, configured directly in `DepthProcessor.hpp`, to convert these relative values into true metric depth in meters.
 
 ---
 
-## Object-Oriented Architecture & UML Class Design
+## Software Architecture & Class Design
 
-The software architecture follows strict object-oriented design principles, utilizing abstract base classes, polymorphic inheritance, and high-level architectural facades to encapsulate neural network inference engines.
+The library is structured around standard object-oriented principles, using a base class interface to cleanly encapsulate the different neural network inference engines.
 
 <div class="project-figure">
   <img src="/images/projects/monocular-perception-and-tracking/uml.png" alt="UML Class Diagram for ACME Monocular Perception Module" />
-  <p class="project-caption">UML Class Diagram illustrating the polymorphic inheritance hierarchy between the ImageProcessor base class, specialized YoloProcessor and DepthProcessor derived classes, and the top-level Analyzer facade orchestrating the perception pipeline.</p>
+  <p class="project-caption">UML Class Diagram showing the hierarchy between the ImageProcessor base class, the specialized model classes, and the top-level Analyzer module.</p>
 </div>
 
-### Detailed Class Breakdown
+### Core Class Structure
 
-- `ImageProcessor` Base Class: Serves as the polymorphic interface defining core virtual methods including `load_model()`, `process()`, `render()`, and `set_backend()`, supporting seamless switching between CPU and CUDA hardware acceleration.
-- `YoloProcessor`: Inherits from `ImageProcessor` to specialize in YOLOv5 tensor parsing, anchor decoding, non-maximum suppression (NMS), and bounding box rendering.
-- `DepthProcessor`: Inherits from `ImageProcessor` to execute Depth Anything inference, image normalization, colormap generation, and metric depth scaling.
-- `Analyzer` Facade: Acts as the top-level orchestrator that aggregates instances of `YoloProcessor` and `DepthProcessor`, manages video streams (`load_video`, `load_camera`), and outputs structured 3D spatial coordinate vectors (`std::vector<std::pair<float, float>>` / obstacle structures) for downstream navigation nodes.
+- `ImageProcessor`: The abstract base class that defines the core interface for model handling (`load_model()`, `process()`, `render()`). It supports dynamic switching between CPU and CUDA hardware backends.
+- `YoloProcessor`: Inherits from `ImageProcessor` to handle YOLOv5-specific operations, including tensor parsing, non-maximum suppression (NMS), and bounding box generation.
+- `DepthProcessor`: Inherits from `ImageProcessor` to manage the Depth Anything inference, handling image normalization, metric depth scaling, and colormap generation.
+- `Analyzer`: The top-level manager that aggregates the processors. It handles the incoming video streams and outputs the structured 3D spatial coordinate vectors required by downstream navigation nodes.
 
 ---
 
-## Software Engineering, Testing & CI/CD Pipeline
+## Development & Testing Pipeline
 
-To ensure production-grade reliability, memory safety, and maintainability, the library is backed by a rigorous development and quality assurance toolchain.
+The library is supported by a standard C++ testing and continuous integration setup to keep the codebase maintainable and catch errors early.
 
 <div class="project-arch-grid">
   <div class="project-arch-card">
-    <div class="project-arch-core">Modular Library & Assets</div>
-    <div class="project-arch-title">C++ Architecture & Dependencies</div>
+    <div class="project-arch-core">Architecture</div>
+    <div class="project-arch-title">C++ & Dependencies</div>
     <ul class="project-arch-list">
-      <li>Compiled as a reusable C++ shared/static library for direct integration into robotics stacks</li>
-      <li>Custom OpenCV 4.10 build incorporating DNN ONNX runtime and CUDA acceleration support</li>
-      <li>Git Large File Storage (Git LFS) managing binary neural network weights (.onnx)</li>
+      <li>Compiled as a reusable C++ library for easy integration into existing robotics stacks</li>
+      <li>Built against OpenCV 4.10 to leverage the DNN ONNX runtime and CUDA acceleration</li>
+      <li>Uses Git LFS to manage the binary neural network weights (.onnx)</li>
     </ul>
   </div>
   <div class="project-arch-card">
-    <div class="project-arch-core">DevOps & QA Suite</div>
-    <div class="project-arch-title">Testing, Static Analysis & CI/CD</div>
+    <div class="project-arch-core">Tooling</div>
+    <div class="project-arch-title">Testing & CI/CD</div>
     <ul class="project-arch-list">
-      <li>Modern CMake multi-target build configuration ensuring rapid compilation</li>
-      <li>CTest automated unit test framework verifying inference and math calculations</li>
-      <li>Cppcheck static analysis enforcing Google C++ guidelines and preventing memory leaks</li>
-      <li>Doxygen documentation generation coupled with gcovr/lcov code coverage metrics</li>
+      <li>Configured via modern CMake for multi-target building</li>
+      <li>Unit-tested using GTest to verify math transformations and model inference</li>
+      <li>Statically analyzed with Cppcheck to catch memory issues and enforce Google C++ style</li>
+      <li>Automated Doxygen API documentation and gcovr/lcov code coverage reporting</li>
     </ul>
   </div>
 </div>

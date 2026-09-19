@@ -80,11 +80,11 @@ To eliminate this artifact without reducing overall brightness, I redesigned the
 
 ## Integrated Base Enclosure
 
-All supporting electronics were housed in a custom-designed 3D printed base unit situated beneath the cube. The enclosure neatly organizes a high-current 5V DC switching power supply, a Bluetooth wireless receiver module, and heavy-duty terminal blocks, ensuring safe wire termination and easy maintenance access while keeping external clutter out of sight.
+All supporting electronics were housed in a custom-designed base unit situated beneath the cube. The enclosure neatly organizes a high-current 5V DC switching power supply, and a Bluetooth wireless receiver module, ensuring safe wire termination and easy maintenance access while keeping external clutter out of sight.
 
 <div class="project-figure">
   <img src="/images/projects/hyper-cube/power-source.jpg" alt="Custom 3D printed base housing power supply and Bluetooth controller" />
-  <p class="project-caption">The integrated base enclosure housing the 5V DC power supply, terminal blocks, and Bluetooth control module.</p>
+  <p class="project-caption">The integrated base enclosure housing the 5V DC power supply and Bluetooth control module.</p>
 </div>
 
 ---
@@ -93,12 +93,10 @@ All supporting electronics were housed in a custom-designed 3D printed base unit
 
 <div class="project-video">
   <iframe
-    src="https://www.youtube.com/embed/BINwRzOokhE"
+    src="https://youtu.be/BINwRzOokhE?si=k2UQ-TcnTPPZH71b"
     title="Infinity Mirror LED Hyper Cube — Full demonstration"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen>
   </iframe>
 </div>
-
-The completed Infinity Mirror LED Hyper Cube successfully merges precision CAD modeling, additive manufacturing, and robust electrical engineering into a striking physical art piece. Designing around severe spatial constraints provided valuable lessons in Design for Manufacturing (DFM), three-dimensional wire harness planning, and power distribution modeling for high-current LED arrays. The Bluetooth smartphone control integration rounds out the build, making it fully interactive and responsive to custom lighting effects.

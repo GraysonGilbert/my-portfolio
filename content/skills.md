@@ -4,9 +4,6 @@ description: "A detailed breakdown of my technical background — tools, languag
 ShowToc: true
 ShowBreadCrumbs: true
 ShowReadingTime: false
----
-
-A detailed breakdown of my technical background — what I build with, what I know, and where I've applied it.
 
 ---
 
@@ -15,53 +12,20 @@ A detailed breakdown of my technical background — what I build with, what I kn
 <div class="skills-edu-grid">
 
 <div class="edu-card">
-    <div class="edu-degree">M.S. Robotics</div>
-    <div class="edu-school"><!-- TODO: Your university name --></div>
+    <div class="edu-degree">M.ENG. Robotics</div>
+    <div class="edu-school">University of Maryland, College Park</div>
     <div class="edu-year">May 2026</div>
+    <div class="edu-detail">GPA: 4.0</div>
     <div class="edu-detail">Coursework: Robot Motion Planning, State Estimation, Reinforcement Learning, Embedded Systems, Computer Vision</div>
 </div>
 
 <div class="edu-card">
-    <div class="edu-degree">B.S. <!-- TODO: Your major --></div>
-    <div class="edu-school"><!-- TODO: Your university name --></div>
-    <div class="edu-year"><!-- TODO: Year --></div>
-    <div class="edu-detail"><!-- TODO: Relevant coursework or honors --></div>
-</div>
-
-</div>
-
----
-
-## Experience
-
-<div class="experience-timeline">
-
-<div class="exp-item">
-    <div class="exp-header">
-        <div>
-            <div class="exp-role"><!-- TODO: Job Title --></div>
-            <div class="exp-org"><!-- TODO: Company / Organization --></div>
-        </div>
-        <div class="exp-date"><!-- TODO: Month Year – Month Year --></div>
-    </div>
-    <ul class="exp-bullets">
-        <li><!-- TODO: Key responsibility or achievement --></li>
-        <li><!-- TODO: Key responsibility or achievement --></li>
-    </ul>
-</div>
-
-<div class="exp-item">
-    <div class="exp-header">
-        <div>
-            <div class="exp-role">Robotics Research Contributor</div>
-            <div class="exp-org">Oceanographic Survey — USS Monitor Project</div>
-        </div>
-        <div class="exp-date">2025</div>
-    </div>
-    <ul class="exp-bullets">
-        <li>Integrated a microSAS sonar sensor payload onto an autonomous underwater vehicle (AUV) for high-resolution acoustic imaging.</li>
-        <li>Captured sub-inch resolution acoustic images of the USS Monitor shipwreck during an open-ocean survey mission.</li>
-    </ul>
+    <div class="edu-degree">B.S. Mechanical Engineering</div>
+    <div class="edu-school">University of Maryland, College Park</div>
+    <div class="edu-year">2022</div>
+    <div class="edu-detail">A. James Clark Legacy Scholarship Recipient</div>
+    <div class="edu-detail">College Park Scholar</div>
+    <div class="edu-detail">Dean's List Fall 2021, Spring 2022</div>
 </div>
 
 </div>
@@ -80,6 +44,9 @@ A detailed breakdown of my technical background — what I build with, what I kn
 <span class="skill-pill">Linux (Ubuntu)</span>
 <span class="skill-pill">Git</span>
 <span class="skill-pill">Docker</span>
+<span class="skill-pill">Google Test</span>
+<span class="skill-pill">Catch2</span>
+<span class="skill-pill">Markdown</span>
 </div>
 
 ### Robotics & Simulation
@@ -97,24 +64,11 @@ A detailed breakdown of my technical background — what I build with, what I kn
 ### Embedded Hardware & Firmware
 
 <div class="skill-pills">
-<span class="skill-pill">STM32 (F407VET6, L476RG)</span>
+<span class="skill-pill">STM32</span>
 <span class="skill-pill">ESP32</span>
-<span class="skill-pill">AS5047P Encoders</span>
-<span class="skill-pill">CAN Bus</span>
 <span class="skill-pill">SPI / I2C / UART</span>
 <span class="skill-pill">SimpleFOC</span>
 <span class="skill-pill">FreeRTOS</span>
-</div>
-
-### PCB & Hardware Design
-
-<div class="skill-pills">
-<span class="skill-pill">KiCad (Multi-layer PCBs)</span>
-<span class="skill-pill">Schematic Capture</span>
-<span class="skill-pill">DFM / Gerber Export</span>
-<span class="skill-pill">Power Distribution</span>
-<span class="skill-pill">SWD Debug Interface</span>
-<span class="skill-pill">BLDC Motor Driver Circuits</span>
 </div>
 
 ### Control & Perception
@@ -132,10 +86,10 @@ A detailed breakdown of my technical background — what I build with, what I kn
 ### Mechanical Design & Prototyping
 
 <div class="skill-pills">
+<span class="skill-pill">Siemens NX</span>
 <span class="skill-pill">Fusion 360</span>
 <span class="skill-pill">SolidWorks</span>
 <span class="skill-pill">FDM 3D Printing</span>
-<span class="skill-pill">Resin Printing</span>
 <span class="skill-pill">GD&T</span>
 <span class="skill-pill">Laser Cutting</span>
 <span class="skill-pill">CNC Machining</span>
@@ -143,26 +97,85 @@ A detailed breakdown of my technical background — what I build with, what I kn
 
 ---
 
-## Dev Tools & Workflow
+## Experience
 
-| Category | Tools |
-| :--- | :--- |
-| **Build & Dependency** | CMake, Make, vcpkg |
-| **Testing** | GoogleTest, pytest |
-| **Version Control** | Git, GitHub |
-| **Containerization** | Docker |
-| **PCB Design** | KiCad |
-| **CAD / Mechanical** | Fusion 360, SolidWorks |
-| **Simulation** | MuJoCo, Webots, Gazebo |
-| **Documentation** | Markdown, Doxygen |
-| **OS / Environments** | Ubuntu Linux, WSL2 |
+<div class="experience-timeline">
+
+<div class="exp-item">
+    <div class="exp-header">
+        <div>
+            <div class="exp-role">Pricipal Systems Engineer</div>
+            <div class="exp-org">Northrop Grumman, Dolphinworks Sonar Development Lab</div>
+        </div>
+        <div class="exp-date">April 2024 – Present</div>
+    </div>
+    <ul class="exp-bullets">
+        <li>Awarded "Top Performer" rating in 2025 (top 10% of employees at job level) for exceptional performance and contributions in engineering and business impact.</li>
+        <li>Lead mechanical and integration engineer for next-generation multi-spectral Synthetic Aperture Sonar (SAS) sensor.</li>
+        <li>Modeled production components and tooling in Siemens NX, and produced ASME-compliant drawings for manufacturing.</li>
+        <li>Developed and performed factory acceptance testing for next generation SAS sensor.</li>
+        <li>Designed, fabricated, and integrated a man-portable SAS payload onto multiple Autonomous Underwater Vehicles (AUV) platforms; extensive on-water experience as vehicle operations and test lead.</li>
+        <li>Led SAS mechanical and software integration on customer AUV, and served as subject matter expert; traveled to customer site and integrated directly with customer teams.</li>
+        <li>Developed Python-based controller to autonomously operate payload, reducing data retrieval and analysis time by 50%.</li>
+        <li>Developed multithreaded C++ navigation interfaces utilizing serialized UDP data streams to seamlessly bridge embedded sonar hardware with AUV navigation sensors.</li>
+    </ul>
+</div>
+
+<div class="exp-item">
+    <div class="exp-header">
+        <div>
+            <div class="exp-role">Model Integration Lead</div>
+            <div class="exp-org">Northrop Grumman Pathways Program</div>
+        </div>
+        <div class="exp-date">October 2023 – March 2024</div>
+    </div>
+    <ul class="exp-bullets">
+        <li>Awarded "Top Performer" rating in 2023 for exceptional performance and contributions in mechanical engineering.</li>
+        <li>Developed 5 high fidelity MATLAB Simulink/Simscape models for a complex submersible system including hydraulics, life support, high-pressure air, and 2 ballast models.</li>
+        <li>Developed integration and test plans of said models to create one integrated performance MATLAB model.</li>
+        <li>Established interfaces of several sub-models to ease integration into a larger system level performance model and part of a broader MBSE approach.</li>
+        <li>Served as main point of contact for all MATLAB modeling related questions on the program, and successfully resolved other teammates problems reducing down time.</li>
+    </ul>
+</div>
+
+<div class="exp-item">
+    <div class="exp-header">
+        <div>
+            <div class="exp-role">Hydraulics System Development Team Member</div>
+            <div class="exp-org">Northrop Grumman Pathways Program</div>
+        </div>
+        <div class="exp-date">May 2023 – October 2023</div>
+    </div>
+    <ul class="exp-bullets">
+        <li>Developed a high-fidelity hydraulics model for a complex submersible using MATLAB Simulink/Simscape, reducing development costs associated with physical prototyping.</li>
+        <li>Validated the model with hand calculations and real-world data from analogous systems.</li>
+        <li>Presented hydraulic model to engineering leadership, securing approval for its use in design decisions and trade studies.</li>
+        <li>Derived system requirements and leveraged the model to modify and verify the design against performance criteria.</li>
+    </ul>
+</div>
+
+<div class="exp-item">
+    <div class="exp-header">
+        <div>
+            <div class="exp-role">Associate Manufacturing Process Engineer</div>
+            <div class="exp-org">Northrop Grumman Pathways Program - Surface Mount Technology (SMT)</div>
+        </div>
+        <div class="exp-date">August 2022 – May 2023</div>
+    </div>
+    <ul class="exp-bullets">
+        <li>Led operator downtime monthly review meeting to recognize and drive SMT manufacturing process improvement.</li>
+        <li>Oversaw and approved Autoline manufacturing process as lead Duty Engineer on a weekly basis.</li>
+        <li>Developed and optimized both Stencil Print and Solder Paste Inspection programs to minimize production CCA defects.</li>
+    </ul>
+</div>
+
+</div>
 
 ---
 
 ## Certifications & Recognition
 
-- <!-- TODO: Add any certifications, awards, or honors here -->
-- <!-- TODO: e.g. "Dean's List — Spring 2024" -->
-- <!-- TODO: e.g. "IEEE Robotics Society Member" -->
+- Part 107 Remote Pilot
+- FCC Amateur Radio Technician
 
 > **Note:** This page is a living document — I'll continue updating it as I complete new projects and courses.

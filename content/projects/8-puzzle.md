@@ -1,7 +1,7 @@
 ---
 title: "8-Puzzle Solver and Graphical Visualization"
 date: 2024-08-01
-tags: ["Algorithms", "Python", "Data Structures", "Pygame", "Search Algorithms"]
+tags: ["Algorithms", "Python", "Path Planning"]
 summary: "Optimal 8-Puzzle solver implementing Breadth-First Search (BFS) with hash-set visited state pruning in Python. Features automated file serialization (Nodes.txt, nodePath.txt) and a custom Pygame graphical engine animating the step-by-step solution path."
 cover:
   image: "images/projects/8-puzzle/thumbnail.png"

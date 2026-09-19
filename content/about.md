@@ -4,18 +4,15 @@ ShowBreadCrumbs: false
 ShowReadingTime: false
 ---
 
-I am a Robotics and Embedded Systems Engineer focused on bridging the gap between hardware and intelligent software. I recently graduated with a Master of Science in Robotics (May 2026), and my expertise spans from writing C++ perception pipelines to designing multi-layer printed circuit boards for automated manufacturing.
+I am a robotics and embedded systems engineer who loves owning the entire process, from the bare metal to the high-level software. I recently finished my M.Eng. in Robotics (May 2026) while working full-time as a hardware engineer developing synthetic aperture sonar for autonomous underwater vehicles. My work spans everything from writing C++ navigation pipelines to designing, building, integrating, and operating physical hardware.
 
 ### What I Do
+I enjoy getting my hands dirty with autonomous systems and understanding the full hardware-software stack. My core technical areas include:
 
-I enjoy owning the entire hardware-software stack. Some of my core technical focus areas include:
+- **Embedded Hardware:** Outside of work, I enjoy working designing custom PCBs, integrating and tuning FPV drones, and working with microcontrollers.
 
-- **Embedded Hardware:** Designing multi-layer schematics and layouts in KiCad, managing power distribution, and implementing firmware for microcontrollers like the STM32F407VET6 and ESP32 series.
-- **Robotics & Autonomy:** Building multi-agent simulation architectures in ROS 2, Webots, and MuJoCo, and implementing closed-loop Field Oriented Control for brushless DC motors.
-- **Machine Learning:** Training reinforcement learning models (specifically Proximal Policy Optimization) in custom Gymnasium environments for zero-shot Sim2Real transfer onto embedded hardware.
+- **Robotics & Autonomy:** Through grad school, I developed in-depth experience with ROS 2 and various simulation tools like Gazebo, Webots, and MuJoCo for various robotics and machine learning applications.
 
-My work is heavily hands-on. Recently, I had the opportunity to contribute to an oceanographic survey that deployed a microSAS sonar sensor on an autonomous underwater vehicle to capture sub-inch resolution acoustic images of the USS Monitor shipwreck.
+- **Mechanical Design & Mechatronics:** Leveraging my mechanical design background, I love bringing physical systems to life through hands-on fabrication and building end-to-end mechatronics projects.
 
-### Beyond the Lab
-
-When I step away from the keyboard, you can usually find me training for a 10-mile road race, working on my Toyota Tacoma for outdoor truck camping, or cultivating my Japanese maple bonsai trees.
+I built this site to showcase the hardware and software projects that keep me busy outside of my day job. Feel free to explore my work, or drop me a message if you'd like to connect.

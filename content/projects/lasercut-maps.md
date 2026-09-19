@@ -1,7 +1,7 @@
 ---
 title: "Topographical Laser Cut Maps: Prototype to Production"
-date: 2023-06-01
-tags: ["Fabrication", "Laser Cutting", "CAD", "DFM"]
+date: 2023-02-01
+tags: ["Fabrication", "Laser Cutting", "DFM"]
 summary: "Engineered a multi-layer topographical map from raw GIS data through to a streamlined production workflow, fulfilling 43 custom orders with a 75% reduction in total build time and a 50% cut in CNC laser cycle time."
 cover:
   image: "images/projects/lasercut-maps/thumbnail.jpg"
