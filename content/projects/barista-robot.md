@@ -65,7 +65,7 @@ I designed the workcell in a circle around a central pedestal-mounted UR10e arm.
   </div>
 </div>
 
--## Kinematic Modeling & Resolved-Rate Cartesian Control
+## Kinematic Modeling & Resolved-Rate Cartesian Control
 
 ### Forward Kinematics
 

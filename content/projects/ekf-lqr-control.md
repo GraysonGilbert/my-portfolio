@@ -6,22 +6,17 @@ summary: "Recreated and verified an augmented 3-state state-space control framew
 cover:
   image: "images/projects/ekf-lqr/thumbnail.png"
   alt: "Simulink model of nonlinear plant and Extended Kalman Filter state estimator"
-  hiddenInSingle: true
+  hiddenInSingle: false
 weight: 6
 ---
 
-Setting up an optical communication link between underwater robots is tough due to severe signal attenuation and the need for precise alignment. For this project, my partner and I worked to recreate and verify an advanced control framework using a recursive Extended Kalman Filter (EKF) and a Linear Quadratic Regulator (LQR). We engineered the simulation using custom blocks in MATLAB and Simulink. You can find the codebase on [GitHub](https://github.com/GraysonGilbert/ENPM667_Project_1).
-
-<div class="project-figure">
-  <img src="/images/projects/ekf-lqr/ekf-plant-block-diagram.png" alt="Simulink model of nonlinear plant and Extended Kalman Filter state estimator" />
-  <p class="project-caption">The Simulink system architecture, showing the nonlinear optical plant, sensor feedback loop, EKF estimator, and real-time scopes.</p>
-</div>
+Setting up an optical communication link between underwater robots is tough due to severe signal attenuation and the need for precise alignment. For this project, my partner and I worked to recreate and verify an advanced control framework using a recursive Extended Kalman Filter (EKF) and a Linear Quadratic Regulator (LQR). We engineered the simulation using custom blocks in MATLAB and Simulink. You can find the codebase and detailed report on [GitHub](https://github.com/GraysonGilbert/ENPM667_Project_1).
 
 ---
 
 ## Channel Modeling & State Vector Architecture
 
-To accurately simulate an underwater optical link, you have to account for both the physical spread of the beam and how marine water absorbs light.
+To accurately simulate an underwater optical link, you have to account for both the physical spread of the beam and how seawater absorbs light.
 
 ### Optical Channel Physics
 The received signal voltage ($V_d$) is calculated by combining spherical beam spreading (the inverse-square law) with exponential medium attenuation (Beer's Law):
@@ -44,19 +39,9 @@ Adding the angular velocity into the state vector gives the LQR a crucial second
 
 ---
 
-## Simulation & System Realities
-
-We built the system based on the Principle of Separation, testing the EKF estimator and the LQR controller independently before combining them. 
-
-* **EKF Tracking:** The Extended Kalman Filter successfully estimated and tracked the true system values within about two seconds of simulation time.
-* **LQR Control:** Running independently, the LQR successfully drove the angle and velocity states to zero within 20 time steps.
-* **Closed-Loop Challenges:** When we fully closed the loop by feeding the EKF estimates into the LQR, the system oscillated and failed to stabilize. We suspected this was due to an underlying plant modeling issue or the absence of an artificial angle offset term ($\psi_k$) used in the original reference paper to force stability. It was a great practical lesson in how theoretical control loops don't always behave perfectly once integrated.
-
----
-
 ## Observability & The Dual-Measurement Fix
 
-Before relying on an Extended Kalman Filter, my partner and I had to prove the system states were actually observable from the sensor data, as detailed in ENPM667_PROJECT1_Sweeney_Gilbert_2.pdf. 
+Before relying on an Extended Kalman Filter, my partner and I had to prove the system states were actually observable from the sensor data, as detailed in the final report on GitHub. 
 
 ### Single-Measurement Limitation
 
@@ -74,11 +59,58 @@ To fix this without the added cost and complexity of a second physical receiver,
 
 Following the Principle of Separation, we built and tested the EKF and LQR completely independently before attempting to close the loop. 
 
-As the plots show, the standalone EKF successfully filtered the Gaussian measurement noise and locked onto the true system values after about two seconds of simulation time. Running on its own with the known true states, the LQR successfully drove the angle and velocity states to zero within 20 time steps. 
+### Standalone EKF Tracking
+
+The state estimator runs a recursive predict-update cycle, propagating the state and error covariance ahead, computing the optimal Kalman gain from incoming measurements, and updating the estimated states:
+
+<div class="project-figure" style="max-width: 580px; margin: 1.5rem auto;">
+  <img src="/images/projects/ekf-lqr/ekf-alg-flow.png" alt="Extended Kalman Filter recursive algorithm flowchart" />
+  <p class="project-caption">Recursive Extended Kalman Filter cycle: initializing state priors, predicting state and covariance, computing the Kalman gain, incorporating incoming measurements to update the state estimate, and propagating error covariance to the next time step.</p>
+</div>
+
+The standalone EKF successfully filtered the Gaussian measurement noise and locked onto the true system values after about two seconds of simulation time:
+
+<div class="project-gallery-3col">
+  <div class="project-compare-item">
+    <span class="project-compare-label">x1: Power Tracking (Prx)</span>
+    <img src="/images/projects/ekf-lqr/ekf-x1-tracking.png" alt="State x1 tracking plot showing received optical power P_rx convergence" />
+  </div>
+  <div class="project-compare-item">
+    <span class="project-compare-label">x2: Orientation Error (θ)</span>
+    <img src="/images/projects/ekf-lqr/ekf-x2-tracking.png" alt="State x2 tracking plot showing receiver normal angle theta convergence" />
+  </div>
+  <div class="project-compare-item">
+    <span class="project-compare-label">x3: Angular Velocity (θ_dot)</span>
+    <img src="/images/projects/ekf-lqr/ekf-x3-tracking.png" alt="State x3 tracking plot showing actuator angular velocity theta_dot convergence" />
+  </div>
+</div>
+
+### Standalone LQR Regulation
+Running on its own with the known true states, the LQR controller successfully drove the initial angular displacement and angular velocity back to zero within 20 time steps (approximately two seconds):
+
+<div class="project-figure">
+  <img src="/images/projects/ekf-lqr/lqr-control.png" alt="Simulink scope trace showing standalone LQR state regulation" />
+  <p class="project-caption">Standalone LQR response: the controller drives orientation error (x2, blue) and angular velocity (x3, orange) smoothly to zero from initial perturbation, while optical power (x1, yellow) remains stable.</p>
+</div>
+
+---
 
 ## EKF & LQR Implementation
 
 Instead of relying on prebuilt Simulink blocks, which weren't robust enough for this specific setup, we wrote custom MATLAB function blocks for both the plant and the controllers. 
+
+<div class="project-compare-grid">
+  <div class="project-compare-item">
+    <span class="project-compare-label">EKF Estimator Architecture</span>
+    <img src="/images/projects/ekf-lqr/ekf-plant-block-diagram.png" alt="Simulink model of nonlinear plant and Extended Kalman Filter state estimator" />
+  </div>
+  <div class="project-compare-item">
+    <span class="project-compare-label">LQR Controller Architecture</span>
+    <img src="/images/projects/ekf-lqr/lqr-block-diagram.png" alt="Simulink block diagram of standalone LQR state feedback control" />
+  </div>
+</div>
+
+--- 
 
 ## Closed-Loop Troubleshooting & Takeaways
 

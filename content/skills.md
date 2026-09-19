@@ -16,7 +16,7 @@ ShowReadingTime: false
     <div class="edu-school">University of Maryland, College Park</div>
     <div class="edu-year">May 2026</div>
     <div class="edu-detail">GPA: 4.0</div>
-    <div class="edu-detail">Coursework: Robot Motion Planning, State Estimation, Reinforcement Learning, Embedded Systems, Computer Vision</div>
+    <div class="edu-detail">Coursework: Robot Motion Planning, State Estimation, Path Planning, Machine Learning, Computer Vision, Software Engineering</div>
 </div>
 
 <div class="edu-card">
@@ -104,7 +104,7 @@ ShowReadingTime: false
 <div class="exp-item">
     <div class="exp-header">
         <div>
-            <div class="exp-role">Pricipal Systems Engineer</div>
+            <div class="exp-role">Principal Systems Engineer</div>
             <div class="exp-org">Northrop Grumman, Dolphinworks Sonar Development Lab</div>
         </div>
         <div class="exp-date">April 2024 – Present</div>
