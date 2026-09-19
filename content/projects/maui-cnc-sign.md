@@ -1,79 +1,57 @@
 ---
 title: "CNC-Routed LED Sign: Maui, Hawaii"
 date: 2023-03-01
-tags: ["CNC", "CAD", "CAM", "Fabrication"]
+tags: ["CNC", "CAD", "CAM", "Fabrication", "Fusion 360"]
 summary: "Designed and manufactured a custom illuminated sign of the island of Maui on a Shapeoko 3 XXL CNC router, featuring multi-tool CAM toolpaths, custom V-carve engraving, and a recessed LED lighting system."
 cover:
-  image: "images/projects/maui-cnc-sign/thumbnail.png"
+  image: "images/projects/maui-cnc-sign/thumbnail.jpg"
   alt: "Finished illuminated CNC-routed sign of Maui, Hawaii"
   hiddenInSingle: false
 weight: 11
 ---
 
-Bridging digital vector graphics and physical subtractive manufacturing, this project explores the end-to-end design and manufacturing workflow for a custom illuminated topographic wall art piece. Centered on the island of Maui, Hawaii, the sign combines precision multi-tool CNC routing, custom V-carve engraving, and an integrated LED backlighting system into a clean, flush-mounting presentation.
-
-<div class="project-stats">
-  <div class="project-stat">
-    <span class="project-stat-value">3 Tools</span>
-    <span class="project-stat-label">Multi-Operation CAM</span>
-  </div>
-  <div class="project-stat">
-    <span class="project-stat-value">90° V-Bit</span>
-    <span class="project-stat-label">Detail Engraving</span>
-  </div>
-  <div class="project-stat">
-    <span class="project-stat-value">Shapeoko 3</span>
-    <span class="project-stat-label">CNC Router</span>
-  </div>
-  <div class="project-stat">
-    <span class="project-stat-value">Recessed</span>
-    <span class="project-stat-label">LED Lighting Channel</span>
-  </div>
-</div>
+I built this custom illuminated wall art of Maui to run through the complete workflow of vector design, CNC routing, and LED integration. The final piece combines multi-tool CNC machining, V-carve engraving, and hidden LED backlighting into a clean, flush-mounted sign.
 
 ---
 
-## CAD and Vector Design Workflow
+## CAD & Vector Design
 
-The development pipeline began by processing a reference outline of the island using Inkscape. The raster map was manually traced to capture accurate perimeter geometry, and custom typography was integrated directly into the vector layout before exporting a clean SVG file.
+The design started in Inkscape, where I manually traced a raster map of the island to get an accurate vector outline and integrated the typography. I exported the clean SVG and pulled it into Autodesk Fusion 360 as a base sketch.
 
-The SVG vector graphic was then imported into Autodesk Fusion 360 as a baseline sketch. The geometry was cleaned up to remove extraneous spline nodes, and parametric offset and extrusion tools were utilized to establish the three-dimensional body, outer boundary contours, and a rear internal channel designed to house the LED lighting components and wiring harness.
+After cleaning up the stray spline nodes, I used Fusion's parametric tools to extrude the 3D body and cut a rear internal channel. This channel houses the LED lighting strip and wiring harness so the sign can sit perfectly flush against the wall.
 
 ---
 
-## CAM and Multi-Tool CNC Machining
+## CAM & CNC Machining
 
-To transform the 3D model into physical hardware, three distinct manufacturing operations were programmed in Fusion 360 and executed via Carbide Motion on a Shapeoko 3 XXL CNC router using medium-density fiberboard (MDF) stock:
+I programmed the CAM toolpaths in Fusion 360 and ran them on a Shapeoko 3 XXL CNC router using MDF stock. The build required three distinct operations:
 
-* **Engraving:** Intricate text detailing and geographic markers were machined using a 90-degree V-carve bit, producing crisp line-width variations based on depth.
-* **Pocketing:** An internal trench was cleared using a 1/8-inch flat end mill to create the recess for the LED strip.
-* **Profiling:** The final outer contour of the island was separated from the stock using a 1/4-inch flat end mill with tab supports to prevent part shift during final passes.
+* **Engraving:** I used a 90-degree V-carve bit for the text and geographic markers to get sharp, clean line-width variations based on depth.
+* **Pocketing:** I ran a 1/8-inch flat end mill to clear out the rear trench for the LED strip.
+* **Profiling:** I cut the final outer contour using a 1/4-inch flat end mill, adding tab supports to keep the part from shifting during the final pass.
 
 <div class="project-figure">
-  <img src="/images/projects/maui-cnc-sign/cnc-maui.jpg" alt="Shapeoko 3 XXL executing multi-tool CAM toolpaths in MDF stock" />
-  <p class="project-caption">Shapeoko 3 XXL executing precision multi-tool CNC routing operations on MDF stock.</p>
+  <img src="/images/projects/maui-cnc-sign/cnc-maui.jpg" alt="Shapeoko 3 XXL cutting the MDF stock" />
+  <p class="project-caption">Running the multi-tool CAM operations on the Shapeoko 3 XXL CNC router.</p>
 </div>
 
 ---
 
-## Hardware Integration and Final Assembly
+## Assembly & Hardware Integration
 
-Achieving a professional presentation required careful attention to both mechanical mounting and electrical wiring:
-
-* **Flush Wall Mounting:** A manual milling machine was used to cut precision recessed keyhole mounting points into the back face of the MDF body, allowing the completed sign to hang completely flat against a wall with zero visible hardware.
-* **Electrical Integration:** An LED lighting strip was press-fit into the CNC-routed internal channel. A DC barrel jack connector was soldered to the leads and secured to the enclosure, providing a robust interface for an external power supply.
+To get the sign to sit completely flush against the wall, I used a manual mill to cut a couple of keyhole slots into the back of the MDF. For the lighting, I press-fit an LED strip into the CNC-routed rear channel and soldered the leads to a standard DC barrel jack, giving it a clean connection point for the power supply.
 
 ---
 
-## Results and Reflections
+## Project Wrap-Up
 
 <div class="project-figure">
   <img src="/images/projects/maui-cnc-sign/finished-maui.jpg" alt="Finished illuminated CNC-routed sign of Maui, Hawaii" />
-  <p class="project-caption">Completed illuminated sign featuring edge-diffused LED backlighting and crisp V-carved typography.</p>
+  <p class="project-caption">The completed sign with edge-diffused LED backlighting and V-carved text.</p>
 </div>
 
-The finished sign successfully demonstrates the power of integrating vector graphics workflows with multi-operation CNC machining. Key technical takeaways from the fabrication process include:
+This piece was a great exercise in running a complete vector-to-CNC workflow. A few practical takeaways from the build:
 
-* **Toolpath Efficiency:** Sequencing tool changes from fine V-carving to heavy profiling minimized tool deflection and ensured tight registration across operations.
-* **Feed and Speed Optimization:** Tuning spindle RPM and feed rates specifically for MDF stock prevented edge burn while maximizing surface finish quality.
-* **Workholding and Zeroing:** Implementing robust zeroing protocols for tool changes eliminated Z-axis offset errors during multi-tool swaps.
+* **Toolpath Sequencing:** Running the delicate V-carving before the heavy contour profiling minimized tool deflection and kept everything aligned.
+* **Feeds and Speeds:** Dialing in the spindle RPM and feed rates for MDF kept the edges from burning and left a clean surface finish.
+* **Z-Zeroing:** Setting up a reliable Z-zeroing workflow during tool changes was critical to prevent depth offsets between the engraving and pocketing passes.

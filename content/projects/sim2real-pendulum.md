@@ -1,7 +1,7 @@
 ---
 title: "Sim2Real Transfer: Robust RL Control of a Furuta Pendulum"
 date: 2026-05-01
-tags: ["Robotics", "Machine Learning", "Embedded", "C++", "Python"]
+tags: ["Robotics", "Machine Learning", "Embedded", "C++", "Python", "3D Printing", "Electronics", "Fabrication", "ESP32"]
 summary: "Trained a PPO control policy in a custom MuJoCo Gymnasium environment and achieved zero-shot transfer onto an ESP32 microcontroller. Balances continuously for over an hour on physical hardware with no additional tuning."
 cover:
   image: "images/projects/sim2real/thumbnail.png"
@@ -10,7 +10,9 @@ cover:
 weight: 1
 ---
 
-Bridging the gap between high-fidelity physics simulation and real-world robotic hardware is a notoriously difficult challenge. This project demonstrates the successful **zero-shot sim-to-real transfer** of a deep reinforcement learning policy to control a highly non-linear, 2-DoF underactuated Furuta pendulum — executing swing-up maneuvers and maintaining continuous balance for **over one hour** on physical hardware without a single line of hardware-specific tuning.
+Getting a simulation to behave exactly like real-world hardware is notoriously tough. This project demonstrates the successful **zero-shot sim-to-real transfer** of a deep reinforcement learning policy to control a highly non-linear, 2-DoF underactuated Furuta pendulum. Executing swing-up maneuvers and maintaining continuous balance for **over one hour** on physical hardware without a single line of hardware-specific tuning.
+
+[GitHub Repository](https://github.com/GraysonGilbert/sim2real-furuta-pendulum.git)
 
 <div class="project-stats">
   <div class="project-stat">

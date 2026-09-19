@@ -1,6 +1,6 @@
 ---
 title: "Infinity Mirror LED Hyper Cube"
-date: 2022-05-01
+date: 2021-06-01
 tags: ["Electronics", "LED", "Fabrication", "3D Printing", "Fusion 360"]
 summary: "Engineered and fabricated a custom infinity mirror LED cube from scratch, integrating 300+ individually addressable LEDs, concealed wire routing through structural acrylic tubing, and a Bluetooth smartphone controller — including hardware troubleshooting to resolve matrix voltage drop."
 cover:
@@ -10,26 +10,8 @@ cover:
 weight: 13
 ---
 
-Inspired by commercial optical illusions and infinity displays, I engineered and fabricated this custom LED Hyper Cube entirely from scratch. By combining precision additive manufacturing, one-way mirror film, and over 300 individually addressable WS2812B LEDs, the cube creates a mesmerizing, seemingly infinite tunnel of light in three dimensions. Fully managed via a custom Bluetooth smartphone controller, the project bridges mechanical design constraints, high-density electrical routing, and iterative hardware debugging.
+I designed and built this LED Infinity Cube using 3D printed frames, one-way mirror film, and over 300 individually addressable WS2812B LEDs to create a 3D infinity mirror effect. The lighting is fully managed via a custom Bluetooth smartphone controller. The core challenge of the build was managing the high-density electrical routing for the LED strips while keeping the mechanical footprint tight enough to hide the wiring.
 
-<div class="project-stats">
-  <div class="project-stat">
-    <span class="project-stat-value">300+</span>
-    <span class="project-stat-label">Addressable LEDs</span>
-  </div>
-  <div class="project-stat">
-    <span class="project-stat-value">Bluetooth</span>
-    <span class="project-stat-label">App Controlled</span>
-  </div>
-  <div class="project-stat">
-    <span class="project-stat-value">Acrylic Conduit</span>
-    <span class="project-stat-label">Concealed Wiring</span>
-  </div>
-  <div class="project-stat">
-    <span class="project-stat-value">Power Injection</span>
-    <span class="project-stat-label">Voltage Drop Fixed</span>
-  </div>
-</div>
 
 <div class="project-video-short-wrapper">
   <div class="project-video-short">
@@ -39,41 +21,41 @@ Inspired by commercial optical illusions and infinity displays, I engineered and
 
 ---
 
-## Mechanical Design & Additive Fabrication
+## Mechanical Design & 3D Printing
 
-The physical structure of the hyper cube was designed entirely from scratch in Autodesk Fusion 360. Achieving clean geometric alignment across six intersecting mirror faces required custom-engineered 3-axis corner joints, interior mounting brackets, and specialized aluminum trim end-caps designed to securely lock the frame and conceal raw metal edges.
+I designed the physical structure of the cube in Fusion 360. To get the six mirror faces to align cleanly, I modeled custom 3-axis corner joints, interior mounting brackets, and aluminum trim end-caps to lock the frame together and hide the raw metal edges.
 
-To maintain a sleek exterior free of wire clutter, the structural support members double as functional conduits. Narrow acrylic tubing serves both as a rigid mechanical backbone and as a concealed wire management channel. Because space within the tubing and corner junctions was exceptionally restricted, every electrical lead was meticulously measured, mapped, and cut to precise lengths prior to assembly to prevent internal bunching and maintain structural integrity.
+To keep the exterior looking clean, the structural support members also act as wire conduits. I used narrow acrylic tubing to form a rigid backbone that could simultaneously hide the wire routing. Because the space inside the tubes and 3D printed corners was incredibly tight, every wire had to be cut to an exact length to avoid bunching up during final assembly.
 
 <div class="project-figure">
   <img src="/images/projects/hyper-cube/progress-picture-1.jpg" alt="Assembly of the custom Infinity Mirror LED Hyper Cube frame and acrylic support members" />
-  <p class="project-caption">Initial frame assembly showing the integration of 3D printed corner brackets and structural acrylic conduit tubes.</p>
+  <p class="project-caption">Initial frame assembly showing the 3D printed corner brackets and the acrylic conduit tubes.</p>
 </div>
 
 ---
 
-## Electrical Integration & Topology
+## Electrical Routing
 
-Powering and controlling over 300 addressable LEDs across a complex three-dimensional lattice required careful circuit planning. Data signal integrity was maintained by routing all LED strips in a single continuous data path traversing every face of the cube in series, ensuring that dynamic lighting patterns and animations travel smoothly and synchronously across all axes.
+Wiring over 300 addressable LEDs across a 3D frame required some upfront planning. To keep the dynamic lighting animations smooth and synchronized, I routed the data line as a single continuous path, running in series across every face of the cube.
 
-Soldered connections inside the tight 3D printed corner brackets demanded high-density, low-profile wiring. Each joint was executed with precision to withstand thermal cycling and mechanical stress during final housing assembly.
+This meant all the soldered connections had to fit inside the tight 3D printed corner brackets. The wiring had to be low-profile and solid enough to handle the mechanical stress of snapping the final housing together without breaking a connection.
 
 <div class="project-figure">
   <img src="/images/projects/hyper-cube/solder-joints.jpg" alt="High-density soldered connections in tight corner joints" />
-  <p class="project-caption">High-density solder joints within the restricted corner enclosures, establishing robust data and power continuity.</p>
+  <p class="project-caption">High-density solder joints squeezed into the corner brackets to keep the data and power lines hidden.</p>
 </div>
 
 ---
 
-## Hardware Debugging & Power Injection
+## Debugging Voltage Drop & Power Injection
 
-During initial bench testing, a major electrical hurdle emerged: voltage drop. Across a continuous run of 300+ LEDs operating at full white brightness, internal trace and wire resistance caused significant voltage decay from the power entry point to the furthest diodes. This resulted in severe chromatic degradation, with distant LEDs shifting visibly toward a dim, reddish-orange hue due to insufficient forward voltage on the blue and green channels.
+During initial bench testing, I ran into a standard WS2812B issue: voltage drop. With a continuous run of 300+ LEDs at full white brightness, the resistance in the strips caused the voltage to sag toward the end of the line. This resulted in the furthest LEDs turning a dim, reddish-orange color because the blue and green diodes weren't getting enough voltage to turn on fully.
 
-To eliminate this artifact without reducing overall brightness, I redesigned the power distribution bus to implement periodic 5V power injection taps. By feeding regulated power directly into intermediate nodes across the LED matrix, voltage levels remained stable across every diode, instantly restoring uniform brightness and color fidelity.
+To fix this without capping the overall brightness in software, I added 5V power injection taps to the wiring harness. By running standard power lines directly to intermediate points across the LED matrix, the voltage stayed stable across the entire run, restoring the bright, uniform white color.
 
 <div class="project-figure">
   <img src="/images/projects/hyper-cube/voltage-drop.jpg" alt="Visual comparison showing color shift and brightness drop before power injection" />
-  <p class="project-caption">Demonstration of voltage drop effects: un-injected runs exhibited noticeable luminance decay and color distortion toward the end of the circuit.</p>
+  <p class="project-caption">Demonstration of voltage drop: the un-injected LED runs dim and shift orange toward the end of the circuit.</p>
 </div>
 
 ---
@@ -92,11 +74,5 @@ All supporting electronics were housed in a custom-designed base unit situated b
 ## Results & Demonstration
 
 <div class="project-video">
-  <iframe
-    src="https://youtu.be/BINwRzOokhE?si=k2UQ-TcnTPPZH71b"
-    title="Infinity Mirror LED Hyper Cube — Full demonstration"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/BINwRzOokhE?si=xJFP7afQUzj1052N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>

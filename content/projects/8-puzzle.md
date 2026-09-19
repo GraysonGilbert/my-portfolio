@@ -1,7 +1,7 @@
 ---
 title: "8-Puzzle Solver and Graphical Visualization"
-date: 2024-08-01
-tags: ["Algorithms", "Python", "Path Planning"]
+date: 2025-02-12
+tags: ["Python", "Path Planning"]
 summary: "Optimal 8-Puzzle solver implementing Breadth-First Search (BFS) with hash-set visited state pruning in Python. Features automated file serialization (Nodes.txt, nodePath.txt) and a custom Pygame graphical engine animating the step-by-step solution path."
 cover:
   image: "images/projects/8-puzzle/thumbnail.png"
@@ -10,16 +10,16 @@ cover:
 weight: 9
 ---
 
-Engineered a robust Python-based computational solver and graphical animation engine for the classic 8-puzzle sliding tile problem. The system combines an unweighted graph search algorithm (Breadth-First Search) with hash-set state deduplication, automated text file serialization, and a custom Pygame rendering pipeline. The complete open-source implementation and codebase are available on GitHub: [GitHub Repository](https://github.com/GraysonGilbert/8_puzzle_problem).
+I built this Python solver and visualizer for the classic 8-puzzle sliding tile problem as a project during my master's. The system uses a Breadth-First Search (BFS) algorithm to find the optimal solution, handles state deduplication with hash sets, and features a custom Pygame rendering pipeline to animate the result. The complete codebase is available on GitHub: [GitHub Repository](https://github.com/GraysonGilbert/8_puzzle_problem).
 
-## Initial State vs. Target Solved Configuration
+## Initial vs. Target State
 
 <div class="project-compare-grid">
-  <div class="project-compare-item">
+  <div class="project-compare-item-square">
     <span class="project-compare-label">Initial Scrambled Board</span>
     <img src="/images/projects/8-puzzle/unsolved.png" alt="Initial scrambled 8-puzzle configuration" />
   </div>
-  <div class="project-compare-item">
+  <div class="project-compare-item-square">
     <span class="project-compare-label">Target Solved Configuration</span>
     <img src="/images/projects/8-puzzle/solved.png" alt="Target solved 8-puzzle configuration" />
   </div>
@@ -27,7 +27,7 @@ Engineered a robust Python-based computational solver and graphical animation en
 
 ---
 
-## Animated Solution Playback
+## Solution Playback
 
 <div class="project-video-short-wrapper">
   <div class="project-video-short">
@@ -35,72 +35,72 @@ Engineered a robust Python-based computational solver and graphical animation en
   </div>
 </div>
 
-<p class="project-caption">Demonstration of the Pygame graphical visualizer stepping sequentially through the reconstructed nodePath.txt solution sequence at 1.0-second intervals.</p>
+<p class="project-caption">Demonstration of the Pygame visualizer stepping through the reconstructed solution sequence.</p>
 
 ---
 
-## Algorithmic Complexity & Architecture Matrix
+## Technical Details
 
-| Computational Dimension | Technical Metric / Mechanism | Algorithmic Justification |
+| Component | Mechanism | Practical Implementation |
 | :--- | :--- | :--- |
-| **Search Algorithm** | Breadth-First Search (BFS) | Guarantees minimum move count (shortest path) on unweighted state graphs |
-| **State Space Size** | 181,440 reachable states ($9! / 2$) | Half of the $9! = 362,880$ permutations are solvable due to parity invariants |
-| **Visited State Lookup** | $O(1)$ Hash-Set Query | Boards flattened into immutable 9-tuples to prevent cycles and re-expansions |
-| **Branching Factor ($b$)** | $2 \le b \le 4$ legal moves per state | Boundary checks dynamically constrain moves based on empty "0" tile coordinates |
-| **Data Serialization** | File-backed decoupled pipeline | Solver writes `Nodes.txt`, `NodesInfo.txt`, and `nodePath.txt` for downstream consumers |
-| **Rendering Canvas** | Pygame 2D Graphics | 300×300 viewport with 100×100 tile cells and timed step playback |
+| **Search Algorithm** | Breadth-First Search (BFS) | Guarantees the shortest path on an unweighted state graph. |
+| **State Space Size** | 181,440 reachable states ($9! / 2$) | Only half of the permutations are mathematically solvable due to parity constraints. |
+| **Visited States** | Hash-Set Lookup ($O(1)$) | I flattened the 3x3 boards into immutable 9-tuples to prevent the search from looping. |
+| **Branching Factor ($b$)** | $2 \le b \le 4$ moves per state | The system checks the grid boundaries dynamically before moving the empty "0" tile. |
+| **Data Output** | File-backed pipeline | The solver writes the results out to text files (`nodePath.txt`, etc.) so the visualizer can run independently. |
+| **Rendering** | Pygame 2D Graphics | A simple 300×300 window mapping the text arrays into a visual grid. |
 
 ---
 
-## Two-Stage Decoupled Software Pipeline
+## Software Pipeline
+
+I split the project into two distinct stages to keep the computation decoupled from the rendering:
 
 <div class="project-arch-grid">
   <div class="project-arch-card">
-    <div class="project-arch-core">Stage 1: Algorithmic Solver</div>
-    <div class="project-arch-title">Queue-Based BFS Engine</div>
+    <div class="project-arch-core">Stage 1: The Solver</div>
+    <div class="project-arch-title">BFS Engine</div>
     <ul class="project-arch-list">
-      <li>Represents 3×3 grid states and tracks the index of the empty "0" tile</li>
-      <li>Validates grid boundaries prior to executing Up, Down, Left, and Right tile swaps</li>
-      <li>Maintains parent-index tracking in memory for backward path reconstruction</li>
-      <li>Serializes explored search graphs into Nodes.txt, NodesInfo.txt, and nodePath.txt</li>
+      <li>Tracks the empty "0" tile and validates grid boundaries before executing moves (Up, Down, Left, Right).</li>
+      <li>Maintains parent-index tracking in memory so it can reconstruct the path backward once the goal is found.</li>
+      <li>Serializes the explored search graphs and the final solution path into text files (`Nodes.txt`, `NodesInfo.txt`, and `nodePath.txt`).</li>
     </ul>
   </div>
   <div class="project-arch-card">
-    <div class="project-arch-core">Stage 2: Graphical Visualizer</div>
-    <div class="project-arch-title">Pygame Animation Runtime</div>
+    <div class="project-arch-core">Stage 2: The Visualizer</div>
+    <div class="project-arch-title">Pygame Runtime</div>
     <ul class="project-arch-list">
-      <li>Decouples computation from rendering by ingesting nodePath.txt</li>
-      <li>Reconstructs raw text lines into 3×3 numerical state matrices</li>
-      <li>Renders a 300×300 pixel canvas with 100×100 active white tiles and a grey empty slot</li>
-      <li>Drives a 1.0s timed clock cycle to smoothly animate the exact solution sequence</li>
+      <li>Runs independently by ingesting the `nodePath.txt` file generated by the solver.</li>
+      <li>Reconstructs the raw text lines back into 3×3 state matrices.</li>
+      <li>Renders a 300×300 pixel canvas and steps through the solution sequence on a timed cycle.</li>
     </ul>
   </div>
 </div>
 
 ---
 
-## Breadth-First Search & Visited State Hashing
+## Breadth-First Search & State Hashing
 
-The 8-puzzle is modeled mathematically as a finite, unweighted state graph where each node represents a unique permutation of the 3×3 tile matrix, and directed edges represent valid sliding actions of adjacent tiles into the empty space (denoted as "0"). 
+The 8-puzzle operates as an unweighted state graph where each node is a unique 3x3 board configuration, and valid moves into the empty "0" space act as edges.
 
-### Optimality via Breadth-First Search
-Because state transitions carry uniform step cost (each legal slide counts as one move), Breadth-First Search (BFS) is deployed via a FIFO queue. BFS guarantees the discovery of the absolute shortest path to the goal configuration. The search systematically expands layer by layer, ensuring that no shorter path can be bypassed.
+### Optimal Pathfinding
+Because every tile slide carries a uniform cost of one step, the solver uses a Breadth-First Search (BFS) algorithm managed by a FIFO queue. Expanding the search layer by layer guarantees it finds the absolute shortest path to the goal.
 
-### Cycle Detection & State Hashing
-To prevent infinite looping and redundant graph exploration, the search space must be pruned. In Python, mutable 2D lists cannot be hashed directly. To achieve constant-time $O(1)$ membership testing and insert operations, every 3×3 grid state is flattened into an immutable 9-tuple and registered in an in-memory hash set (`visited`). This mechanism prunes previously discovered configurations instantly, restricting expansion strictly to novel states.
+### Cycle Detection & Hashing
+To prevent infinite looping, the search space has to be strictly pruned. Since mutable 2D lists cannot be hashed in Python, every 3×3 grid is flattened into an immutable 9-tuple and added to a `visited` hash set. This allows for constant-time $O(1)$ lookups, instantly dropping redundant configurations.
 
 ### Backtracking Parent Pointers
-During traversal, each generated child node records the array index of its parent node. Upon encountering the exact goal state configuration, the algorithm initiates a backward traversal from the goal node index through parent pointers up to the root initial state. This traceback isolates the exact minimal sequence of states required to solve the puzzle.
+During the search, each generated child node records the index of its parent. When the goal state is found, the algorithm traces these parent pointers backward to the initial state, isolating the exact sequence of moves required to solve the puzzle.
 
 ---
 
-## File Serialization & Decoupled Architecture
+## Decoupled Architecture & File I/O
 
-Rather than coupling computation directly with graphical rendering, the software architecture establishes a file-backed, decoupled pipeline through three primary artifacts:
+Rather than locking the computation to the graphical rendering, the architecture is decoupled using a file-backed pipeline:
 
-- **`Nodes.txt`**: Logs every board configuration explored during the breadth-first traversal in chronological order of discovery.
-- **`NodesInfo.txt`**: Maintains relational metadata for every node, recording its unique integer ID, parent node index, and traversal cost.
-- **`nodePath.txt`**: Contains exclusively the isolated sequence of board matrices forming the optimal solution path from root to goal.
+*   **`Nodes.txt`**: Logs every board configuration explored during the search in chronological order.
+*   **`NodesInfo.txt`**: Stores node metadata, including its unique integer ID, parent index, and traversal cost.
+*   **`nodePath.txt`**: Contains exclusively the isolated sequence of optimal board matrices from root to goal.
 
-### Engineering Benefits of Decoupling
-This file serialization strategy decouples algorithmic computation from visualization runtime. The headless solver script can execute massive state graph searches in high-performance or batch environments without graphical overhead. Downstream applications—such as the custom Pygame visualizer or automated test suites—can subsequently ingest `nodePath.txt` independently for playback, verification, and UI rendering.
+### Engineering Benefits
+Serializing the data to text files completely separates the computation from the runtime graphics. The solver can execute massive state searches headlessly without UI overhead. The custom Pygame visualizer then independently reads `nodePath.txt` to playback and animate the exact solution sequence.

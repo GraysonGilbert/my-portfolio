@@ -10,12 +10,7 @@ cover:
 weight: 15
 ---
 
-What began as an exploratory initiative to master CNC laser cutting operations at a local makerspace rapidly evolved into a rigorous lean manufacturing case study. By bridging GIS data extraction, vector design optimization, and batch production engineering, I developed a multi-layered wooden topographical map of my neighborhood that ultimately scaled into fulfilling 43 bespoke client orders.
-
-<div class="project-figure">
-  <img src="/images/projects/lasercut-maps/styled-first-map.jpg" alt="Custom framed wooden topographical map displayed with address pin" />
-  <p class="project-caption">Initial production unit: multi-layered birch wood topographical map with custom coordinate pin and natural edge frame.</p>
-</div>
+What started as a personal project to learn the laser cutter at my local makerspace quickly turned into a small-scale production run. By combining GIS data, vector design, and batch manufacturing techniques, I built a multi-layered wooden topographical map of my neighborhood that eventually scaled into fulfilling 43 custom orders.
 
 <div class="project-stats">
   <div class="project-stat">
@@ -30,79 +25,75 @@ What began as an exploratory initiative to master CNC laser cutting operations a
     <span class="project-stat-value">>50%</span>
     <span class="project-stat-label">Laser Cycle Reduction</span>
   </div>
-  <div class="project-stat">
-    <span class="project-stat-value">3 Layers</span>
-    <span class="project-stat-label">Physical GIS Topology</span>
-  </div>
 </div>
 
 ---
 
 ## Lean DFM and Process Optimization
 
-Scaling from a one-off prototype to a 43-unit production run required a systematic Design for Manufacturing (DFM) overhaul. The initial prototype suffered from excessive machine cycle times, inefficient material utilization, and labor-intensive assembly bottlenecks.
+Scaling from a single prototype to a 43-unit run meant I had to completely rethink how these maps were made. The first version simply took too long to cut, wasted a lot of wood, and was incredibly tedious to assemble.
 
 <div class="project-arch-grid">
   <div class="project-arch-card">
-    <div class="project-arch-core">Initial State: Prototype Inefficiencies</div>
-    <div class="project-arch-title">Initial Prototype Bottlenecks</div>
+    <div class="project-arch-core">The Prototype</div>
+    <div class="project-arch-title">Initial Bottlenecks</div>
     <ul class="project-arch-list">
-      <li>Individual G-code programs for each separate physical layer</li>
-      <li>Manual recalibration and focal zeroing stops between cuts</li>
-      <li>Loose part layout with excessive scrap stock and long transit moves</li>
-      <li>12 hours total end-to-end build time per unit</li>
+      <li>Running separate cut files for every single physical layer</li>
+      <li>Stopping to manually recalibrate the laser focus between cuts</li>
+      <li>Poor part layout leading to wasted material and long laser travel times</li>
+      <li>~12 hours of total end-to-end build time per map</li>
     </ul>
   </div>
   <div class="project-arch-card">
-    <div class="project-arch-core">Optimized State: Scaled Production</div>
-    <div class="project-arch-title">Lean Workflow Streamlining</div>
+    <div class="project-arch-core">The Production Run</div>
+    <div class="project-arch-title">Batch Manufacturing</div>
     <ul class="project-arch-list">
-      <li>Consolidated all cutting into two master nested programs (layers + frame)</li>
-      <li>Tight nesting maximizing raw sheet utilization and eliminating travel waste</li>
-      <li>Batch finishing, staining, clamping, and polishing procedures</li>
-      <li>Over 50% cut time reduction and drop to ~3 hours total build time</li>
+      <li>Combined all layers and frame components into just two nested cut files</li>
+      <li>Tightly nested parts to maximize the wood sheet and reduce laser travel</li>
+      <li>Switched to batch processes for staining, clamping, and gluing</li>
+      <li>Cut laser time by over 50% and dropped total build time to ~3 hours</li>
     </ul>
   </div>
 </div>
 
 ---
 
-## GIS Vector Extraction and Multi-Layer Topology
+## GIS Data & Vector Design
 
-Translating raw geographic data into physical artifacts required a multi-stage software and vector processing pipeline:
+Turning raw geographic data into a clean, cuttable design required a structured vector workflow:
 
-* **Data Extraction & Vectorization:** Extracted raw road networks and land elevation topology using the Google Maps API and SnazzyMaps styling layers to isolate clean vector boundaries.
-* **Design for Manufacturing (DFM):** Processed raster and vector data in Inkscape, segmenting the map into three distinct physical elevation tiers: water basin, base land terrain, and the raised road grid. Rigorous node-level vector editing was performed to eliminate stray paths, ensure clean laser kerf compensation, and maintain structural bridges across delicate road networks.
-* **Personalized Coordinate Pin:** Engineered a custom architectural feature integrating a distinct coordinate pin calibrated to each client's exact latitude and longitude, anchoring the abstract topographical relief to a personal geographic location.
+* **Data Extraction:** I pulled the raw road networks and land boundaries using the Google Maps API and SnazzyMaps to isolate high-contrast vector lines.
+* **Vector Optimization:** Using Inkscape, I separated the map into three physical layers: the water basin, the base land terrain, and the top road grid. I cleaned up the vector nodes to remove stray paths, account for the laser kerf, and ensure the delicate road networks remained structurally intact.
+* **Custom Coordinate Pin:** To personalize each map, I added a custom marker pin placed at the client's exact latitude and longitude.
 
 ---
 
-## Production Variant Gallery
+## Color Variants
 
-To cater to diverse interior aesthetics while maintaining standardized batch manufacturing protocols, three distinct wood stain and finish variants were engineered and cataloged.
+To offer a few different styles without slowing down batch production, I offered three standard stain colors for the map's background water layer.
 
 <div class="project-gallery-3col">
   <div class="project-compare-item">
-    <span class="project-compare-label">Ebony Stain Finish</span>
-    <img src="/images/projects/lasercut-maps/black-map.jpg" alt="Topographical map in ebony black finish" />
+    <span class="project-compare-label">Black</span>
+    <img src="/images/projects/lasercut-maps/black-map.jpg" alt="Topographical map with black water background" />
   </div>
   <div class="project-compare-item">
-    <span class="project-compare-label">Maritime Blue Stain</span>
-    <img src="/images/projects/lasercut-maps/blue-map.jpg" alt="Topographical map in deep blue finish" />
+    <span class="project-compare-label">Deep Blue</span>
+    <img src="/images/projects/lasercut-maps/blue-map.jpg" alt="Topographical map with deep blue water background" />
   </div>
   <div class="project-compare-item">
-    <span class="project-compare-label">Coastal Cyan Stain</span>
-    <img src="/images/projects/lasercut-maps/light-blue-map.jpg" alt="Topographical map in light blue finish" />
+    <span class="project-compare-label">Light Blue</span>
+    <img src="/images/projects/lasercut-maps/light-blue-map.jpg" alt="Topographical map with light blue water background" />
   </div>
 </div>
 
 ---
 
-## Manufacturing Results and Quality Control
+## Production Results
 
-Over a one-year production lifecycle, I managed the complete end-to-end operation from raw material procurement and laser CNC processing to hand-finishing, quality inspection, and direct fulfillment. 
+Over the course of a 8 months, I managed the entire process from buying the raw wood and running the laser cutter to final assembly and shipping. 
 
-Key engineering and operational outcomes include:
-* **Mastery of CNC Laser Operations:** Achieved complete proficiency in laser power, speed, frequency, and focal distance optimization across varied wood composite thicknesses.
-* **Streamlined Batch Production:** Standardized clamping, adhesive curing, and finishing jigs that reduced per-unit labor overhead by 75%.
-* **Customer Satisfaction:** Successfully delivered 43 custom maps with zero structural defects, proving that rigorous DFM principles can successfully transition hobbyist fabrication into profitable small-scale production.
+Key takeaways from the production run include:
+* **CNC Laser Operations:** Dialed in the laser power, speed, frequency, and focal distance settings across various wood thicknesses to get perfectly clean, repeatable cuts.
+* **Assembly Jigs:** Built standard jigs for clamping, gluing, and finishing that cut the manual assembly time per unit by 75%.
+* **Final Delivery:** Manufactured and delivered 43 custom maps, successfully turning a hobbyist makerspace project into a reliable small-scale production run.

@@ -1,6 +1,6 @@
 ---
 title: "State Estimation & Optimal LQR Control for Underwater Optical Alignment"
-date: 2024-11-01
+date: 2024-11-15
 tags: ["Control Systems", "EKF", "LQR", "Simulink", "State Estimation"]
 summary: "Recreated and verified an augmented 3-state state-space control framework for Underwater Wireless Optical Communication (UWOC). Implemented an Extended Kalman Filter (EKF) with dual-measurement observability paired with a Linear Quadratic Regulator (LQR) in MATLAB/Simulink to achieve sub-two-second optical alignment under attenuation and sensor noise."
 cover:
@@ -10,125 +10,85 @@ cover:
 weight: 6
 ---
 
-Establishing reliable, high-bandwidth communication links between autonomous underwater vehicles (AUVs) requires maintaining precise optical transceiver alignment across turbulent marine environments. Underwater Wireless Optical Communication (UWOC) systems face severe operational challenges, including hydrodynamic disturbances, exponential optical beam attenuation, and sensor noise. This project engineered and verified an advanced augmented state-space control framework integrating a recursive Extended Kalman Filter (EKF) with a Linear Quadratic Regulator (LQR) in MATLAB and Simulink. Explore the complete implementation and simulation assets in the [GitHub Repository](https://github.com/GraysonGilbert/ENPM667_Project_1).
-
-<div class="project-stats">
-  <div class="project-stat"><span class="project-stat-value">3-State</span><span class="project-stat-label">Force-Velocity Model</span></div>
-  <div class="project-stat"><span class="project-stat-value">Beer's Law</span><span class="project-stat-label">Channel Attenuation</span></div>
-  <div class="project-stat"><span class="project-stat-value">Rank 3</span><span class="project-stat-label">Dual-Measurement EKF</span></div>
-  <div class="project-stat"><span class="project-stat-value">&lt; 2.0 s</span><span class="project-stat-label">State Convergence</span></div>
-</div>
+Setting up an optical communication link between underwater robots is tough due to severe signal attenuation and the need for precise alignment. For this project, my partner and I worked to recreate and verify an advanced control framework using a recursive Extended Kalman Filter (EKF) and a Linear Quadratic Regulator (LQR). We engineered the simulation using custom blocks in MATLAB and Simulink. You can find the codebase on [GitHub](https://github.com/GraysonGilbert/ENPM667_Project_1).
 
 <div class="project-figure">
   <img src="/images/projects/ekf-lqr/ekf-plant-block-diagram.png" alt="Simulink model of nonlinear plant and Extended Kalman Filter state estimator" />
-  <p class="project-caption">Simulink system architecture illustrating the nonlinear optical plant model, sensor measurement feedback loop, recursive Extended Kalman Filter estimator block, and state demuxing to real-time verification scopes.</p>
+  <p class="project-caption">The Simulink system architecture, showing the nonlinear optical plant, sensor feedback loop, EKF estimator, and real-time scopes.</p>
 </div>
 
 ---
 
-## Physical Channel Modeling & 3-State Variable Architecture
+## Channel Modeling & State Vector Architecture
 
-Accurately simulating underwater optical communication requires capturing both geometric beam propagation limits and medium-specific optical properties. 
+To accurately simulate an underwater optical link, you have to account for both the physical spread of the beam and how marine water absorbs light.
 
 ### Optical Channel Physics
-The received optical power \(P_{rx}\) is modeled by combining spherical beam spreading via the inverse-square law with exponential medium attenuation governed by the Beer-Lambert law:
+The received signal voltage ($V_d$) is calculated by combining spherical beam spreading (the inverse-square law) with exponential medium attenuation (Beer's Law):
 
 <div class="project-math">
-$$P_{rx} = P_{tx} \cdot \frac{A_{rx} \cos(\theta)}{2\pi d^2 (1 - \cos(\theta_{div}))} \cdot \exp(-c(\lambda) d)$$
+$$V_d = C_p I_\theta \exp(-cd) \cos(\phi) / d^2$$
 </div>
 
-where \(P_{tx}\) is transmitted power, \(A_{rx}\) is receiver aperture area, \(\theta\) is the receiver normal alignment angle, \(d\) is link distance, \(\theta_{div}\) is beam divergence angle, and \(c(\lambda)\) is the wavelength-dependent attenuation coefficient of turbid marine water.
+where $I_\theta$ is the transmitter light intensity, $c$ is the water's attenuation coefficient, $d$ is the link distance, $\phi$ is the receiver's incident angle, and $C_p$ represents system-specific constants.
 
 ### State Vector Formulation
-To capture the full dynamics of pointing adjustments and received signal strength under disturbance torques, we formulated an augmented 3-state vector:
+Most basic optical transceiver controllers just use a 2-state model tracking power and angle. To gain more precise control, we formulated an augmented 3-state vector that includes the actuator's angular velocity ($\dot{\phi}$):
 
 <div class="project-math">
-$$\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} P_{rx} \\ \theta \\ \dot{\theta} \end{bmatrix}$$
+$$\mathbf{x}_k = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} C_p I_\theta e^{-cd} / d^2 \\ \phi \\ \dot{\phi} \end{bmatrix}$$
 </div>
 
-### Force-Velocity Design Advantage
-Standard control frameworks for optical transceivers rely on simplified two-state position models (\(P_{rx}\) and \(\theta\)). Augmenting the state vector with actuator angular velocity \(\dot{\theta}\) transforms the plant into a rigorous force-velocity formulation. This provides a critical second-order tuning dimension for transient damping, allowing the controller to actively suppress overshoot and oscillation induced by underwater fluid drag.
+### The Force-Velocity Advantage
+Adding the angular velocity into the state vector gives the LQR a crucial second tuning dimension. Even though the physical receiver properties remain the same, this extra state allows the controller's response to be tuned much more effectively for transient damping.
 
 ---
 
-## Observability Analysis & Dual-Measurement Innovation
+## Simulation & System Realities
 
-State estimation requires verifying that internal plant states are fully observable from external sensor outputs. 
+We built the system based on the Principle of Separation, testing the EKF estimator and the LQR controller independently before combining them. 
 
-### Observability Matrix Ranking
-We computed the Jacobian observation matrix and evaluated the rank of the observability matrix:
+* **EKF Tracking:** The Extended Kalman Filter successfully estimated and tracked the true system values within about two seconds of simulation time.
+* **LQR Control:** Running independently, the LQR successfully drove the angle and velocity states to zero within 20 time steps.
+* **Closed-Loop Challenges:** When we fully closed the loop by feeding the EKF estimates into the LQR, the system oscillated and failed to stabilize. We suspected this was due to an underlying plant modeling issue or the absence of an artificial angle offset term ($\psi_k$) used in the original reference paper to force stability. It was a great practical lesson in how theoretical control loops don't always behave perfectly once integrated.
 
-<div class="project-math">
-$$\mathcal{O} = \begin{bmatrix} C & CA & CA^2 \end{bmatrix}^T$$
-</div>
+---
+
+## Observability & The Dual-Measurement Fix
+
+Before relying on an Extended Kalman Filter, my partner and I had to prove the system states were actually observable from the sensor data, as detailed in ENPM667_PROJECT1_Sweeney_Gilbert_2.pdf. 
 
 ### Single-Measurement Limitation
-Mathematical evaluation revealed that relying solely on a scalar received optical power measurement (\(P_{rx}\)) yielded an unobservable system (\(\operatorname{rank}(\mathcal{O}) < 3\)). Because multiple angular offsets can produce identical received power drops due to the symmetric beam profile, the estimator cannot mathematically disambiguate orientation errors from power fluctuations.
 
-### Dual-Measurement Innovation
-To resolve this limitation, we introduced a dual-measurement innovation: incorporating sequential angular perturbation measurements alongside optical power feedback. This augmented output vector restored full matrix rank (\(\operatorname{rank}(\mathcal{O}) = 3\)), guaranteeing that all system states are fully reconstructible from sensor data.
+We calculated the Jacobian matrix to build the observability matrix ($O$) and check its rank. 
 
----
+$$O = \begin{bmatrix} C \\ CA \\ CA^2 \end{bmatrix}$$
 
-## Standalone Estimator & Controller Validation (3-State Tracking Gallery)
+The determinant evaluated to zero, meaning the rank was less than 3, rendering the system unobservable with just one measurement. Because the beam's light intensity is symmetric about the normal, a single power measurement does not provide enough information to estimate all states. 
 
-Adhering to the Principle of Separation, the Extended Kalman Filter and Linear Quadratic Regulator were independently validated prior to closed-loop integration.
+### The Dual-Measurement Solution
 
-<div class="project-gallery-3col">
-  <div class="project-compare-item">
-    <span class="project-compare-label">x1: Power Tracking (Prx)</span>
-    <img src="/images/projects/ekf-lqr/ekf-x1-tracking.png" alt="State x1 tracking plot showing received optical power P_rx convergence" />
-  </div>
-  <div class="project-compare-item">
-    <span class="project-compare-label">x2: Orientation Error (θ)</span>
-    <img src="/images/projects/ekf-lqr/ekf-x2-tracking.png" alt="State x2 tracking plot showing receiver normal angle theta convergence" />
-  </div>
-  <div class="project-compare-item">
-    <span class="project-compare-label">x3: Angular Velocity (θ_dot)</span>
-    <img src="/images/projects/ekf-lqr/ekf-x3-tracking.png" alt="State x3 tracking plot showing actuator angular velocity theta_dot convergence" />
-  </div>
-</div>
+To fix this without the added cost and complexity of a second physical receiver, we modeled a single receiver taking measurements while rotating through a predefined array of angles, changing by 2 degrees per step. By taking two sequential measurements, we restored the observability matrix rank to 3, guaranteeing the EKF could mathematically reconstruct all the states. 
 
-As demonstrated across the verification plots, the standalone EKF successfully suppresses simulated Gaussian sensor noise and tracks true system states within two seconds. Concurrently, the standalone LQR controller successfully drives initial orientation errors and angular velocities back to zero.
+## Standalone EKF & LQR Testing
 
----
+Following the Principle of Separation, we built and tested the EKF and LQR completely independently before attempting to close the loop. 
 
-## Estimator & Controller Algorithm Architecture
+As the plots show, the standalone EKF successfully filtered the Gaussian measurement noise and locked onto the true system values after about two seconds of simulation time. Running on its own with the known true states, the LQR successfully drove the angle and velocity states to zero within 20 time steps. 
 
-The control stack is structured around two rigorous algorithmic engines implemented in MATLAB and Simulink custom function blocks.
+## EKF & LQR Implementation
 
-<div class="project-arch-grid">
-  <div class="project-arch-card">
-    <div class="project-arch-core">Extended Kalman Filter (EKF)</div>
-    <div class="project-arch-title">Nonlinear Recursive State Estimation</div>
-    <ul class="project-arch-list">
-      <li>Nonlinear state prediction modeling optical channel dynamics and actuator kinematics</li>
-      <li>Analytical Jacobian matrix linearization (\(F_k\) and \(H_k\)) evaluated at each operational timestep</li>
-      <li>Optimal Kalman gain computation coupled with process (\(Q\)) and measurement (\(R\)) covariance updates</li>
-    </ul>
-  </div>
-  <div class="project-arch-card">
-    <div class="project-arch-core">Linear Quadratic Regulator (LQR)</div>
-    <div class="project-arch-title">Optimal State-Feedback Control</div>
-    <ul class="project-arch-list">
-      <li>Continuous Algebraic Riccati Equation (CARE) solver computing optimal gain matrix \(K\)</li>
-      <li>State weighting matrix \(Q_{lqr}\) configured to heavily penalize pointing error and orientation drift</li>
-      <li>Control effort penalty \(R_{lqr}\) tuned to prevent actuator saturation and aggressive torque spikes</li>
-    </ul>
-  </div>
-</div>
+Instead of relying on prebuilt Simulink blocks, which weren't robust enough for this specific setup, we wrote custom MATLAB function blocks for both the plant and the controllers. 
 
----
+## Closed-Loop Troubleshooting & Takeaways
 
-## Closed-Loop Integration Diagnostics & Engineering Takeaways
+While the EKF and LQR worked perfectly on their own, the fully closed-loop system failed to stabilize. The estimated states diverged, and the controller couldn't drive the orientation back to zero. We ran through a series of systematic troubleshooting steps to isolate the issue: 
 
-Integrating the validated plant, EKF estimator, and LQR controller into a unified closed-loop Simulink architecture exposed critical insights into nonlinear control limits.
+* **Adding the $\psi_k$ Offset:** We tried adding the artificial angle offset term ($\psi_k$) used in the original reference paper's state estimation, but it actually worsened the results and introduced more oscillation. 
+* **Covariance Tuning:** We tuned the $Q_{EKF}$, $R_{EKF}$, and $Q_{LQR}$ parameters. This changed the filter's behavior but didn't solve the instability or yield a demonstrable improvement. 
+* **Actuator Limits:** We bounded the state values, limiting the angle to $\pm 15$ degrees and 0.2 degrees per timestep. This slowed the response but still ultimately ended in oscillation. 
+* **Timesteps & Initial Conditions:** Adjusting the simulation timestep just stretched or compressed the response, and changing initial conditions offered no improvement. 
 
-### Systematic Troubleshooting
-* **Covariance Tuning:** Adjusted process noise covariance \(Q\) and measurement noise covariance \(R\) matrices to balance filter responsiveness against sensor noise rejection.
-* **Solver Tolerances:** Modified variable-step ODE solver configurations in Simulink to handle stiff non-linearities at peak attenuation boundaries.
-* **Actuator Saturation:** Implemented strict torque and velocity limits to prevent numerical divergence during large initial transient errors.
-* **Stability Boundaries:** Analyzed non-linear plant stability limits where extreme optical attenuation gradients invalidate linear approximations, highlighting the boundaries of local linearization.
+### Final Thoughts
 
-### Key Takeaways
-The project successfully demonstrated that while linear quadratic regulators and extended Kalman filters provide exceptional performance under mild perturbations, strongly nonlinear optical channels require careful gain scheduling or robust nonlinear control extensions to maintain global stability under severe marine disturbances.
+This project was a great lesson in the reality of control systems. According to the Principle of Separation, independent estimators and controllers should combine perfectly. In practice, a hidden modeling flaw in the nonlinear plant or a missing theoretical constraint can easily break the closed loop.

@@ -10,39 +10,13 @@ cover:
 weight: 12
 ---
 
-What began in 2016 as a creative outlet to capture dynamic aerial footage quickly evolved into a foundational passion for hardware and electromechanical systems. Designing, building, and piloting First-Person View (FPV) racing and freestyle drones served as the primary catalyst for my engineering career, providing critical early exposure to hands-on fabrication, circuit integration, and complex system troubleshooting.
-
-<div class="project-stats">
-  <div class="project-stat">
-    <span class="project-stat-value">Since 2016</span>
-    <span class="project-stat-label">Building & Piloting</span>
-  </div>
-  <div class="project-stat">
-    <span class="project-stat-value">4-in-1 ESC</span>
-    <span class="project-stat-label">Micro-Electronics</span>
-  </div>
-  <div class="project-stat">
-    <span class="project-stat-value">Betaflight</span>
-    <span class="project-stat-label">PID Loop Tuning</span>
-  </div>
-  <div class="project-stat">
-    <span class="project-stat-value">Carbon & TPU</span>
-    <span class="project-stat-label">Custom CAD Components</span>
-  </div>
-</div>
-
-<div class="project-figure">
-  <img src="/images/projects/fpv-drones/drone-iso.jpg" alt="Custom built high-performance FPV freestyle quadcopter" />
-  <p class="project-caption">Isometric view of the custom 5-inch freestyle quadcopter, optimized for high-G maneuvers, vibration isolation, and crash resilience.</p>
-</div>
+Building and flying FPV drones in 2016 was my entry point into hardware engineering. What started as a fun way to get dynamic camera angles of my friends biking quickly turned into a crash course in circuit integration, soldering, and troubleshooting. It’s what ultimately pushed me toward robotics.
 
 ---
 
-## Electronics & Micro-Integration
+## Electronics & Integration
 
-Assembling an FPV quadcopter requires high-density micro-integration within extreme weight and spatial constraints. Precision soldering and meticulous wire management are critical when packing a flight controller, 4-in-1 Electronic Speed Controller (ESC) stack, 5.8 GHz video transmitter (VTX), and digital receiver into a compact carbon fiber chassis.
-
-Power distribution must handle transient currents exceeding 120A during aggressive punch-outs. Implementing low-ESR electrolytic capacitors at the battery leads is essential to suppress motor inductive voltage spikes and electrical noise, protecting sensitive inertial measurement unit (IMU) gyros from desyncs and sensor saturation.
+Packing a flight controller, a 4-in-1 ESC, a 5.8 GHz VTX, and a receiver into a tight carbon fiber frame leaves almost zero room for error in wire management. Because the power system has to handle transient spikes well over 120A during aggressive punch-outs, clean soldering and proper capacitance are mandatory. I rely on low-ESR electrolytic capacitors at the battery leads to clamp inductive voltage spikes from the motors and keep the electrical noise from saturating the IMU gyros. I also spend a lot of time evaluating and tuning different ESC firmwares, like BLHeli_32, to optimize the motor startup signals and overall flight performance.
 
 <div class="project-compare-grid">
   <div class="project-compare-item">
@@ -57,24 +31,18 @@ Power distribution must handle transient currents exceeding 120A during aggressi
 
 ---
 
-## Mechanical Design & Custom Additive Components
+## Mechanical Design & Custom 3D Printing
 
-Structural rigidity combined with impact energy absorption defines a robust airframe. Using CAD software, I designed and 3D-printed custom TPU (Thermoplastic Polyurethane) and PLA components—including camera mounts, antenna securement guides, and arm-tip skid protectors—tailored to absorb high-velocity impacts without transferring destructive shock loads to the carbon fiber plates.
-
-Furthermore, mechanical isolation of the flight controller IMU using soft silicone grommets effectively filtered out high-frequency motor harmonic vibrations, ensuring clean gyro data for attitude estimation and stabilization control loops.
+A freestyle drone spends a lot of time crashing into concrete and trees. To protect the carbon fiber frame and electronics, I CAD and 3D print custom TPU bumpers, camera mounts, and antenna guides to absorb the shock of high-velocity impacts. Beyond impact protection, mechanical isolation is critical for flight performance. Soft-mounting the flight controller with silicone grommets filters out the high-frequency motor harmonics before they reach the IMU, feeding much cleaner gyro data into the stabilization loop.
 
 ---
 
-## System Diagnostics & Flight Dynamics Tuning
+## Diagnostics & Flight Tuning
 
-High-stress flight environments demand rigorous hardware diagnostics. Building and crashing these systems required troubleshooting electrical shorts, ground loops, and radio frequency interference (RFI) under tight field conditions.
-
-Beyond hardware, achieving locked-in flight characteristics required iterative tuning of PID control loops, feedforward filters, and dynamic notch filtering within Betaflight firmware. Fine-tuning these parameters eliminated prop-wash oscillations and reduced latency to sub-millisecond response times, directly translating pilot stick inputs into crisp acrobatic execution.
+Crashing means fixing things in the field...tracking down electrical shorts, ground loops, or RF interference on the bench or in the dirt. But getting the hardware running is only half the battle. Getting a drone to fly well requires iterative PID tuning, feedforward adjustments, and dynamic notch filtering in Betaflight. Dialing in these parameters eliminates prop-wash oscillation and cuts down the latency, making the drone respond instantly to stick inputs.
 
 ---
 
-## Engineering Impact & The 2020 Build
+## The 2020 Build
 
-Building and maintaining these high-performance systems instilled a deep appreciation for resilient hardware design and iterative problem-solving, ultimately driving my decision to pursue a formal engineering degree in mechatronics and robotics. 
-
-The featured project showcases a custom quadcopter constructed during the 2020 lockdown, engineered from the ground up for aggressive freestyle flight and extreme crash durability. The hands-on experience gained through years of iteration, thermal soldering, dynamic balancing, and firmware debugging provided an invaluable practical foundation that continues to inform every hardware and embedded systems project I undertake.
+The photos here highlight a custom freestyle quad I built during the 2020 lockdown, designed specifically to take a beating. The hands-on experience of sourcing parts, soldering under a microscope, managing ESC hardware, and debugging firmware laid the practical foundation for the embedded systems and hardware projects I build today.

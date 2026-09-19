@@ -12,6 +12,7 @@ weight: 4
 
 The ACME Monocular Perception and Tracking Module is a C++ software library designed to give autonomous mobile robots 3D situational awareness using only a standard RGB camera. Originally developed for the ENPM700 Software Development course at the University of Maryland, the pipeline fuses YOLOv5 object detection with the Depth Anything monocular depth estimation model. By relying entirely on a monocular video stream, the system tracks multiple people and calculates their relative depth without the cost, weight, or computational overhead of active LiDAR or stereo camera rigs.
 
+[GitHub Repository](https://github.com/GraysonGilbert/ACME_perception_module.git)
 
 <div class="project-figure">
   <img src="/images/projects/monocular-perception-and-tracking/demo_screenshot.png" alt="Monocular 3D perception pipeline detecting humans and estimating metric (X, Y, Z) coordinates" />

@@ -7,7 +7,7 @@ ShowReadingTime: false
 I am a robotics and embedded systems engineer who loves owning the entire process, from the bare metal to the high-level software. I recently finished my M.Eng. in Robotics (May 2026) while working full-time as a hardware engineer developing synthetic aperture sonar for autonomous underwater vehicles. My work spans everything from writing C++ navigation pipelines to designing, building, integrating, and operating physical hardware.
 
 ### What I Do
-I enjoy getting my hands dirty with autonomous systems and understanding the full hardware-software stack. My core technical areas include:
+I enjoy working with autonomous systems and understanding the full hardware-software stack. My core technical areas include:
 
 - **Embedded Hardware:** Outside of work, I enjoy working designing custom PCBs, integrating and tuning FPV drones, and working with microcontrollers.
 

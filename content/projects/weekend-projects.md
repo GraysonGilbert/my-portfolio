@@ -1,7 +1,7 @@
 ---
 title: "Weekend & Rapid Fabrication Projects"
 date: 2024-01-01
-tags: ["Fabrication", "CAD", "Laser Cutting", "3D Printing", "CNC"]
+tags: ["Fabrication", "CAD", "Laser Cutting", "3D Printing", "CNC", "CAM"]
 summary: "A curated anthology of rapid prototypes, targeted repairs, and community initiatives — spanning CNC-machined marine wayfinding signage, reverse-engineered 3D printed adapters, upcycled laser goods, and fluid flow jug modifications."
 cover:
   image: "images/projects/weekend-projects/thumbnail.png"
@@ -10,25 +10,25 @@ cover:
 weight: 19
 ---
 
-Beyond large-scale research and semester projects, rapid prototyping is a continuous personal practice. This anthology documents targeted builds, repairs, and community commissions completed over weekends to solve practical problems and repurpose shop materials.
+Outside of my main engineering work, I usually have a few quick hardware or fabrication projects running on the side. This section is a collection of one-off weekend builds, repairs, and small commissions designed to solve practical problems or just use up scrap material around the shop.
 
 <div class="project-arch-grid">
   <div class="project-arch-card">
-    <div class="project-arch-core">Community & Infrastructure</div>
-    <div class="project-arch-title">Marine Signage & Fabrication</div>
+    <div class="project-arch-core">Community Projects</div>
+    <div class="project-arch-title">Signs & Awards</div>
     <ul class="project-arch-list">
-      <li>Marina Dock Slip Markers: Weather-resistant vinyl cutting</li>
-      <li>CNC Wayfinding Sign: Dual-color UV-stabilized marine HDPE</li>
-      <li>Chesupeake Race Awards: Batch laser-cut wooden keychains</li>
+      <li>Marina Dock Slip Markers: Outdoor vinyl cutting</li>
+      <li>CNC Marina Sign: Machined two-color marine HDPE</li>
+      <li>Chesapeake Race Awards: Batch laser-cut wooden keychains</li>
     </ul>
   </div>
   <div class="project-arch-card">
-    <div class="project-arch-core">Functional Mechanical Solutions</div>
-    <div class="project-arch-title">CAD & Additive Tooling</div>
+    <div class="project-arch-core">Practical Fixes</div>
+    <div class="project-arch-title">CAD & 3D Printing</div>
     <ul class="project-arch-list">
-      <li>Wing Foil Pump Adapter: Reverse-engineered airtight interface</li>
-      <li>Upcycled Hardwood Coasters: Zero-waste laser jigs & cork backing</li>
-      <li>RTIC Jug Vent Retrofit: Fluid dynamic vacuum elimination plug</li>
+      <li>Wing Foil Pump Adapter: Reverse-engineered 3D-printed nozzle</li>
+      <li>Hardwood Coasters: Laser-cut from shop scrap with cork backing</li>
+      <li>RTIC Jug Vent Retrofit: 3D-printed vent plug to stop pouring air-lock</li>
     </ul>
   </div>
 </div>
@@ -37,7 +37,7 @@ Beyond large-scale research and semester projects, rapid prototyping is a contin
 
 ## Marina Dock Signs
 
-High-visibility signage was designed and produced for slips and piers at the local neighborhood marina to improve nighttime and daytime navigation for visiting boaters. Vector typography and layout geometry were generated in LightBurn, and final graphics were precision-cut from all-weather outdoor vinyl using a Cricut plotter for durable mechanical bonding to existing wooden dock posts.
+I made a set of high-visibility signs for my local marina to make it easier for visiting boaters to navigate the slips. I laid out the vector graphics and typography in LightBurn, then cut the final decals from all-weather outdoor vinyl using a Cricut plotter before mounting them directly to the wooden dock posts.
 
 <div class="project-compare-grid">
   <div class="project-compare-item">
@@ -63,7 +63,7 @@ High-visibility signage was designed and produced for slips and piers at the loc
 
 ---
 
-## CNC-Machined Marina Wayfinding Sign
+## CNC-Machined Marina Sign
 
 Following the success of the slip markers, I was commissioned to design and fabricate a primary, weather-resistant entrance sign positioned to welcome boat traffic approaching the marina from the water. 
 
@@ -72,7 +72,7 @@ The 2D vector artwork was developed in LightBurn and transitioned into Autodesk 
 <div class="project-compare-grid">
   <div class="project-compare-item">
     <span class="project-compare-label">Fusion 360 CAD Model</span>
-    <img src="/images/projects/weekend-projects/br-sign-cad.jpg" alt="Fusion 360 CAD model of marina wayfinding sign" />
+    <img src="/images/projects/weekend-projects/br-sign-cad.png" alt="Fusion 360 CAD model of marina wayfinding sign" />
   </div>
   <div class="project-compare-item">
     <span class="project-compare-label">CNC Machined Sign</span>
@@ -87,11 +87,11 @@ The 2D vector artwork was developed in LightBurn and transitioned into Autodesk 
 
 ---
 
-## Wing Foil High-Pressure Pump Adapter
+## Wing Foil Pump Adapter
 
-When unable to source an off-the-shelf valve adapter to properly inflate a handheld wing for wing foiling, I designed and fabricated a custom solution. 
+When I couldn't find an off-the-shelf adapter to inflate my wing for foil, I decided to just print one. 
 
-The proprietary valve and flexible hose connections were measured using digital calipers, and an airtight high-pressure nozzle adapter was modeled in CAD with optimized sealing flanges and tapered barb geometry. The part was additively manufactured in high-strength PETG with 100 percent infill, providing immediate field utility and withstanding sustained inflation pressures without leakage.
+I took some caliper measurements of the proprietary valve and the pump hose, then modeled a high-pressure nozzle in CAD with a tapered barb to ensure a tight seal. I printed it solid (100% infill) in PETG. It worked perfectly in the field and easily handles the sustained inflation pressures without leaking.
 
 <div class="project-compare-grid">
   <div class="project-compare-item">
@@ -106,19 +106,19 @@ The proprietary valve and flexible hose connections were measured using digital 
 
 ---
 
-## Upcycled Laser-Engraved Wooden Coasters
+## Scrap Hardwood Coasters
 
-Aiming to minimize scrap and maintain a low-waste shop workflow, I repurposed high-grade hardwood cutoffs generated during topographical laser-cut map production runs. 
+To keep scrap waste down in the shop, I started repurposing the high-grade hardwood cutoffs left over from my laser-cut map runs. 
 
-Coaster blanks were laser-cut and engraved with regional cartographic and wildlife motifs. To streamline batch assembly and ensure consistent registration, I designed and 3D-printed a precision alignment jig that holds the wooden disks securely while applying non-slip cork backings.
+I laser-cut the scraps into blanks and engraved them with local maps and wildlife designs. To speed up the cork backing process, I 3D-printed a quick alignment jig that holds the wooden disks securely, making batch assembly fast and perfectly registered every time.
 
 <div class="project-compare-grid">
   <div class="project-compare-item">
-    <span class="project-compare-label">Blue Ridge Mountain Design</span>
+    <span class="project-compare-label">Blue Ridge Mountain</span>
     <img src="/images/projects/weekend-projects/br-coaster.jpg" alt="Laser engraved Blue Ridge Mountain wooden coaster" />
   </div>
   <div class="project-compare-item">
-    <span class="project-compare-label">Great Blue Heron Design</span>
+    <span class="project-compare-label">Great Blue Heron</span>
     <img src="/images/projects/weekend-projects/heron-coaster.jpg" alt="Laser engraved Great Blue Heron wooden coaster" />
   </div>
 </div>
@@ -127,9 +127,9 @@ Coaster blanks were laser-cut and engraved with regional cartographic and wildli
 
 ## Chesupeake Paddleboard Race Keychains
 
-As an active participant in weekly summer paddleboard races on the Chesapeake Bay, I fabricated custom commemorative awards for top-finishing paddlers in the Chesupeake racing community. 
+I race paddleboards weekly on the Chesapeake Bay during the summer, so I offered to make some custom awards for the top finishers in the local Chesupeake SUP community. 
 
-The organization's event branding was translated into vector artwork and optimized for laser engraving. Using batch production runs, logos and race metrics were laser-etched and cut onto hardwood keychain blanks, functioning as durable, organic end-of-season podium prizes.
+I converted the organization's event branding into vector artwork, then set up a batch production run on the laser cutter. The logos were etched directly onto hardwood keychain blanks, resulting in solid, practical end-of-season awards for the podium.
 
 <div class="project-compare-grid">
   <div class="project-compare-item">
@@ -137,36 +137,36 @@ The organization's event branding was translated into vector artwork and optimiz
     <img src="/images/projects/weekend-projects/chesupeake-keychain.jpg" alt="Single custom wooden keychain award" />
   </div>
   <div class="project-compare-item">
-    <span class="project-compare-label">Batch Production Array</span>
+    <span class="project-compare-label">Batch Production Run</span>
     <img src="/images/projects/weekend-projects/multiple-keychains.jpg" alt="Batch production array of wooden keychains" />
   </div>
 </div>
 
 <div class="project-figure">
   <img src="/images/projects/weekend-projects/podium.JPG" alt="Podium presentation with winners receiving wooden awards" />
-  <p class="project-caption">End-of-season podium presentation celebrating top-finishing racers with the custom awards.</p>
+  <p class="project-caption">End-of-season podium presentation for the top-finishing racers.</p>
 </div>
 
 ---
 
-## RTIC 1-Gallon Jug Air Vent Modification
+## RTIC 1-Gallon Jug Vent Mod
 
-Standard RTIC one-gallon water jugs suffer from restricted pouring flow rates due to inadequate lid venting, leading to vapor lock and slow liquid transfer. 
+Standard RTIC one-gallon water jugs glug terribly because the lid doesn't vent air properly, creating a vacuum that restricts the pouring flow rate. 
 
-After finding no commercial remedies, I designed an aftermarket venting plug in CAD and 3D printed the retrofit component in food-safe PETG. The integrated air vent channel eliminates internal vacuum during pouring, dramatically increasing fluid velocity and cutting bottle refill and pouring times down to seconds.
+Since I couldn't find an aftermarket fix, I modeled a vent plug in CAD and printed it in food-safe PETG. The plug adds an internal air channel that completely breaks the vacuum, cutting the pouring time down to seconds.
 
 <div class="project-compare-grid">
   <div class="project-compare-item">
-    <span class="project-compare-label">Vent Plug Top View</span>
+    <span class="project-compare-label">Vent Plug CAD</span>
     <img src="/images/projects/weekend-projects/rtic-mod-cad-1.png" alt="CAD top view of RTIC vent plug" />
   </div>
   <div class="project-compare-item">
-    <span class="project-compare-label">Airflow Channel Section</span>
+    <span class="project-compare-label">Airflow Channel</span>
     <img src="/images/projects/weekend-projects/rtic-mod-cad-2.png" alt="CAD section view showing internal airflow channel" />
   </div>
 </div>
 
 <div class="project-figure">
-  <img src="/images/projects/weekend-projects/rtic-mod-installed.jpg" alt="3D printed vent plug installed on RTIC lid" />
-  <p class="project-caption">Functional retrofit vent plug installed on RTIC lid, eliminating pouring vacuum and cutting refill time to seconds.</p>
+  <iframe style="margin: 0 auto; display: block;" width="315" height="560" src="https://www.youtube.com/embed/ayCk9LnYBnc" title="RTIC Vent Mod Demonstration" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <p class="project-caption" style="text-align: center;">Demonstration of the functional vent plug installed on the RTIC lid, completely eliminating the pouring vacuum.</p>
 </div>

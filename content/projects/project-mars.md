@@ -12,6 +12,8 @@ weight: 3
 
 Project MARS (Multi-Agent Robotic SLAM) is a distributed autonomous mapping architecture built in ROS 2 Humble and Webots. The system coordinates a fleet of TurtleBot3 mobile robots to map complex indoor environments. By pairing decentralized, per-robot local SLAM with a centralized probabilistic map fusion node, MARS generates high-fidelity spatial reconstructions while entirely avoiding inter-robot interference.
 
+[Github Repository](https://github.com/GraysonGilbert/project_mars.git)
+
 <div class="project-video-grid">
   <div class="project-video">
     <iframe
