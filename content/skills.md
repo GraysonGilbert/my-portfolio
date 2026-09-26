@@ -105,13 +105,20 @@ ShowReadingTime: false
     <div class="exp-header">
         <div>
             <div class="exp-role">Principal Systems Engineer</div>
+        </div>
+        <div class="exp-date">July 2026 – Present</div>
+    </div>
+    <div class="exp-header">
+        <div>
+            <div class="exp-role">Hardware Engineer</div>
             <div class="exp-org">Northrop Grumman, Dolphinworks Sonar Development Lab</div>
         </div>
-        <div class="exp-date">April 2024 – Present</div>
+        <div class="exp-date">April 2024 – July 2026</div>
     </div>
     <ul class="exp-bullets">
+        <li>2x Bravo award recipient in 2026 for outstanding engineering and business impact</li>
         <li>Awarded "Top Performer" rating in 2025 (top 10% of employees at job level) for exceptional performance and contributions in engineering and business impact.</li>
-        <li>Lead mechanical and integration engineer for next-generation multi-spectral Synthetic Aperture Sonar (SAS) sensor.</li>
+        <li>IPT Lead Engineer for next-generation multi-spectral Synthetic Aperture Sonar (SAS) sensor.</li>
         <li>Modeled production components and tooling in Siemens NX, and produced ASME-compliant drawings for manufacturing.</li>
         <li>Developed and performed factory acceptance testing for next generation SAS sensor.</li>
         <li>Designed, fabricated, and integrated a man-portable SAS payload onto multiple Autonomous Underwater Vehicles (AUV) platforms; extensive on-water experience as vehicle operations and test lead.</li>
@@ -132,7 +139,6 @@ ShowReadingTime: false
     <ul class="exp-bullets">
         <li>Awarded "Top Performer" rating in 2023 for exceptional performance and contributions in mechanical engineering.</li>
         <li>Developed 5 high fidelity MATLAB Simulink/Simscape models for a complex submersible system including hydraulics, life support, high-pressure air, and 2 ballast models.</li>
-        <li>Developed integration and test plans of said models to create one integrated performance MATLAB model.</li>
         <li>Established interfaces of several sub-models to ease integration into a larger system level performance model and part of a broader MBSE approach.</li>
         <li>Served as main point of contact for all MATLAB modeling related questions on the program, and successfully resolved other teammates problems reducing down time.</li>
     </ul>
@@ -149,7 +155,6 @@ ShowReadingTime: false
     <ul class="exp-bullets">
         <li>Developed a high-fidelity hydraulics model for a complex submersible using MATLAB Simulink/Simscape, reducing development costs associated with physical prototyping.</li>
         <li>Validated the model with hand calculations and real-world data from analogous systems.</li>
-        <li>Presented hydraulic model to engineering leadership, securing approval for its use in design decisions and trade studies.</li>
         <li>Derived system requirements and leveraged the model to modify and verify the design against performance criteria.</li>
     </ul>
 </div>
