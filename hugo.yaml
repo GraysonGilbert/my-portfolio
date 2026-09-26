@@ -19,6 +19,10 @@ markup:
             - ["$", "$"]
 
 params:
+  env: production
+  description: "Robotics and Mechatronics Engineer portfolio showcasing autonomous systems, controls, embedded hardware, and rapid prototyping."
+  images:
+    - "website-preview.jpeg"
   assets:
     favicon: "/favicon.png"
 
