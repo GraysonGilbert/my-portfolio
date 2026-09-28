@@ -1,6 +1,6 @@
 ---
 title: "Home"
-description: "Robotics and Mechatronics Engineer portfolio showcasing autonomous systems, controls, embedded hardware, and rapid prototyping."
+description: "Robotics and Embedded Systems Engineer portfolio showcasing autonomous systems, controls, embedded hardware, and rapid prototyping."
 images:
   - "website-preview.jpeg"
 ---
