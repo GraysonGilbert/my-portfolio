@@ -9,7 +9,7 @@ I am a robotics and embedded systems engineer who loves owning the entire proces
 ### What I Do
 I enjoy working with autonomous systems and understanding the full hardware-software stack. My core technical areas include:
 
-- **Embedded Hardware:** Outside of work, I enjoy working designing custom PCBs, integrating and tuning FPV drones, and working with microcontrollers.
+- **Embedded Hardware:** Outside of work, I enjoy designing custom PCBs, integrating and tuning FPV drones, and working with microcontrollers.
 
 - **Robotics & Autonomy:** Through grad school, I developed in-depth experience with ROS 2 and various simulation tools like Gazebo, Webots, and MuJoCo for various robotics and machine learning applications.
 
